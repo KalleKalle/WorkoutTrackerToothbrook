@@ -34,8 +34,8 @@ So i thought instead of manually giving points and keeping track, i would develo
 <li>The app COULD be able to show proper technique when doing certain workouts
 <li>The app COULD be able to give suggestions for workouts
 </ul>
-<li><i>WOULD HAVES</i>
+<li><i>WON'T HAVES</i>
 <ul>
-<li>The app WOULD be able to give recipies for nutritional and healthy food
+<li>The app WON'T be able to give recipies for nutritional and healthy food
 </ul>
 </ul
