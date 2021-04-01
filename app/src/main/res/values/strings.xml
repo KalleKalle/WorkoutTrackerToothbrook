@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">WorkoutTrackerToothbrook</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="title_social">Social</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_tracker">Tracker</string>
 </resources>
