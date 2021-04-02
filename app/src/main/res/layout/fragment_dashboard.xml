@@ -139,8 +139,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:inputType="textPersonName"
-                android:text="@string/workout_reps"
+                android:inputType="number"
+                android:hint="@string/workout_reps"
                 tools:layout_editor_absoluteY="321dp" />
 
             <EditText
@@ -149,7 +149,7 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="textPersonName"
-                android:text="@string/workout_name"
+                android:hint="@string/workout_name"
                 tools:layout_editor_absoluteX="206dp"
                 tools:layout_editor_absoluteY="457dp" />
 
@@ -167,6 +167,7 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="number"
+                android:hint="@string/number_of_minutes"
                 tools:layout_editor_absoluteY="502dp" />
 
             <TextView
