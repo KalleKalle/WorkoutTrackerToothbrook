@@ -22,4 +22,11 @@
         android:name="com.example.workouttrackertoothbrook.ui.tracker.trackerFragment"
         android:label="@string/title_tracker"
         tools:layout="@layout/fragment_tracker" />
+
+    <fragment
+        android:id="@+id/navigation_personal"
+        android:name="com.example.workouttrackertoothbrook.ui.personal.personalFragment"
+        android:label="fragment_personal"
+        tools:layout="@layout/fragment_personal" />
+
 </navigation>

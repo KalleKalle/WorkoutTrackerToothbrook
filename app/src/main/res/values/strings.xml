@@ -16,4 +16,5 @@
     <string name="minutes">Minutes</string>
     <string name="add_workout_button">Add workout</string>
     <string name="number_of_minutes">number of minutes</string>
+    <string name="personal">personal</string>
 </resources>

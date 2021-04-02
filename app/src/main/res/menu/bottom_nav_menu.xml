@@ -16,5 +16,10 @@
         android:icon="@drawable/ic_baseline_map_24"
         android:title="@string/title_tracker" />
 
+    <item
+        android:id="@+id/navigation_personal"
+        android:icon="@drawable/ic_baseline_person_24"
+        android:title="@string/personal" />
+
 
 </menu>
