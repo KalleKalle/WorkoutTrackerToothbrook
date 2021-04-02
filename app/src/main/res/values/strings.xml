@@ -4,4 +4,15 @@
     <string name="title_social">Social</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_tracker">Workout</string>
+    <string name="workout_overview">Workout Overview</string>
+    <string name="minutesworkedout">minutesworkedout</string>
+    <string name="kilometerstraversed">KilometersTraversed</string>
+    <string name="previousweek">previousWeek</string>
+    <string name="kilometersprev">kilometersPrev</string>
+    <string name="averagekilometers">averageKilometers</string>
+    <string name="add_workout">Add Workout</string>
+    <string name="workout_name">workout Name</string>
+    <string name="workout_reps">Workout Reps</string>
+    <string name="minutes">Minutes</string>
+    <string name="add_workout_button">Add workout</string>
 </resources>

@@ -1,22 +1,213 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#57000000"
     tools:context=".ui.dashboard.dashboardFragment">
 
-    <TextView
-        android:id="@+id/text_dashboard"
+    <LinearLayout
         android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/minuteImage"
+                android:layout_width="102dp"
+                android:layout_height="77dp"
+                android:src="@drawable/ic_baseline_sports_handball_24"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/dashboard_main" />
+
+            <ImageView
+                android:id="@+id/KilometersImage"
+                android:layout_width="102dp"
+                android:layout_height="81dp"
+                android:layout_marginStart="4dp"
+                android:src="@drawable/ic_baseline_transfer_within_a_station_24"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/minuteImage" />
+
+            <TextView
+                android:id="@+id/dashboard_main"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/workout_overview"
+                android:textColor="#000000"
+                android:textSize="30sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/Minutesworkedout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/minutesworkedout"
+                android:textSize="24sp"
+                app:layout_constraintStart_toEndOf="@+id/minuteImage"
+                app:layout_constraintTop_toBottomOf="@+id/dashboard_main" />
+
+            <TextView
+                android:id="@+id/kilometerstraversed"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/kilometerstraversed"
+                android:textSize="24sp"
+                app:layout_constraintStart_toEndOf="@+id/KilometersImage"
+                app:layout_constraintTop_toBottomOf="@+id/minuteaverage" />
+
+            <TextView
+                android:id="@+id/minutespreviousweek"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/previousweek"
+                android:textSize="24sp"
+                app:layout_constraintStart_toEndOf="@+id/minuteImage"
+                app:layout_constraintTop_toBottomOf="@+id/Minutesworkedout" />
+
+            <TextView
+                android:id="@+id/minuteaverage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="averageMinutes"
+                android:textSize="24sp"
+                app:layout_constraintStart_toEndOf="@+id/minuteImage"
+                app:layout_constraintTop_toBottomOf="@+id/minutespreviousweek" />
+
+            <TextView
+                android:id="@+id/kilometersPreviousWeek"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/kilometersprev"
+                android:textSize="24sp"
+                app:layout_constraintStart_toEndOf="@+id/KilometersImage"
+                app:layout_constraintTop_toBottomOf="@+id/kilometerstraversed" />
+
+            <TextView
+                android:id="@+id/averageKilometers"
+                android:layout_width="199dp"
+                android:layout_height="41dp"
+                android:text="@string/averagekilometers"
+                android:textSize="24sp"
+                app:layout_constraintStart_toEndOf="@+id/KilometersImage"
+                app:layout_constraintTop_toBottomOf="@+id/kilometersPreviousWeek" />
+
+            <TextView
+                android:id="@+id/addworkout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/add_workout"
+                android:textColor="#000000"
+                android:textSize="24sp"
+
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/averageKilometers" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+
+            <EditText
+                android:id="@+id/WorkoutReps"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:text="@string/workout_reps"
+                tools:layout_editor_absoluteY="321dp" />
+
+            <EditText
+                android:id="@+id/workoutname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:text="@string/workout_name"
+                tools:layout_editor_absoluteX="206dp"
+                tools:layout_editor_absoluteY="457dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/editTextNumber"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="number"
+                tools:layout_editor_absoluteY="502dp" />
+
+            <TextView
+                android:id="@+id/Minutes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/minutes"
+                android:textSize="24sp"
+                tools:layout_editor_absoluteX="210dp"
+                tools:layout_editor_absoluteY="576dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/button"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+
+                android:text="@string/add_workout_button"
+                tools:layout_editor_absoluteX="159dp"
+                tools:layout_editor_absoluteY="683dp" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+
+
+
+</LinearLayout>
+
+
+
+
+
+
+
+
+
