@@ -51,7 +51,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/minutesworkedout"
-                android:textSize="24sp"
+                android:textSize="20sp"
                 app:layout_constraintStart_toEndOf="@+id/minuteImage"
                 app:layout_constraintTop_toBottomOf="@+id/dashboard_main" />
 
@@ -60,7 +60,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/kilometerstraversed"
-                android:textSize="24sp"
+                android:textSize="20sp"
                 app:layout_constraintStart_toEndOf="@+id/KilometersImage"
                 app:layout_constraintTop_toBottomOf="@+id/minuteaverage" />
 
@@ -69,7 +69,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/previousweek"
-                android:textSize="24sp"
+                android:textSize="20sp"
                 app:layout_constraintStart_toEndOf="@+id/minuteImage"
                 app:layout_constraintTop_toBottomOf="@+id/Minutesworkedout" />
 
@@ -78,7 +78,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="averageMinutes"
-                android:textSize="24sp"
+                android:textSize="20sp"
                 app:layout_constraintStart_toEndOf="@+id/minuteImage"
                 app:layout_constraintTop_toBottomOf="@+id/minutespreviousweek" />
 
@@ -87,7 +87,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/kilometersprev"
-                android:textSize="24sp"
+                android:textSize="20sp"
                 app:layout_constraintStart_toEndOf="@+id/KilometersImage"
                 app:layout_constraintTop_toBottomOf="@+id/kilometerstraversed" />
 
@@ -96,7 +96,7 @@
                 android:layout_width="199dp"
                 android:layout_height="41dp"
                 android:text="@string/averagekilometers"
-                android:textSize="24sp"
+                android:textSize="20sp"
                 app:layout_constraintStart_toEndOf="@+id/KilometersImage"
                 app:layout_constraintTop_toBottomOf="@+id/kilometersPreviousWeek" />
 
@@ -135,7 +135,7 @@
 
 
             <EditText
-                android:id="@+id/WorkoutReps"
+                android:id="@+id/editWorkoutReps"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ems="10"
@@ -143,7 +143,7 @@
                 android:hint="@string/workout_reps"
                 tools:layout_editor_absoluteY="321dp" />
 
-            <EditText
+            <Spinner
                 android:id="@+id/workoutname"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -162,7 +162,7 @@
             android:orientation="horizontal">
 
             <EditText
-                android:id="@+id/editTextNumber"
+                android:id="@+id/editMinutes"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ems="10"
@@ -188,7 +188,7 @@
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/button"
+                android:id="@+id/AddWorkoutButton"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
 
