@@ -1,4 +1,4 @@
-package com.example.workouttrackertoothbrook.ui.personal;
+package com.example.workouttrackertoothbrook.ui.personal.editBody;
 
 import androidx.lifecycle.ViewModelProvider;
 
@@ -14,24 +14,24 @@ import android.view.ViewGroup;
 
 import com.example.workouttrackertoothbrook.R;
 
-public class Information extends Fragment {
+public class bodyInformationFragment extends Fragment {
 
-    private InformationViewModel mViewModel;
+    private BodyInformationViewModel mViewModel;
 
-    public static Information newInstance() {
-        return new Information();
+    public static bodyInformationFragment newInstance() {
+        return new bodyInformationFragment();
     }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.information_fragment, container, false);
+        return inflater.inflate(R.layout.body_information_fragment, container, false);
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        mViewModel = new ViewModelProvider(this).get(InformationViewModel.class);
+        mViewModel = new ViewModelProvider(this).get(BodyInformationViewModel.class);
         // TODO: Use the ViewModel
     }
 

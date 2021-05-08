@@ -1,4 +1,4 @@
-package com.example.workouttrackertoothbrook.ui.personal;
+package com.example.workouttrackertoothbrook.ui.personal.editBody;
 
 import androidx.lifecycle.ViewModel;
 

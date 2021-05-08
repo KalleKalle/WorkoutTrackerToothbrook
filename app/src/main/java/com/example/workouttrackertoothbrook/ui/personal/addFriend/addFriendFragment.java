@@ -1,4 +1,4 @@
-package com.example.workouttrackertoothbrook.ui.personal;
+package com.example.workouttrackertoothbrook.ui.personal.addFriend;
 
 import androidx.lifecycle.ViewModelProvider;
 
@@ -14,24 +14,24 @@ import android.view.ViewGroup;
 
 import com.example.workouttrackertoothbrook.R;
 
-public class bodyInformation extends Fragment {
+public class addFriendFragment extends Fragment {
 
-    private BodyInformationViewModel mViewModel;
+    private AddFriendViewModel mViewModel;
 
-    public static bodyInformation newInstance() {
-        return new bodyInformation();
+    public static addFriendFragment newInstance() {
+        return new addFriendFragment();
     }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.body_information_fragment, container, false);
+        return inflater.inflate(R.layout.add_friend_fragment, container, false);
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        mViewModel = new ViewModelProvider(this).get(BodyInformationViewModel.class);
+        mViewModel = new ViewModelProvider(this).get(AddFriendViewModel.class);
         // TODO: Use the ViewModel
     }
 

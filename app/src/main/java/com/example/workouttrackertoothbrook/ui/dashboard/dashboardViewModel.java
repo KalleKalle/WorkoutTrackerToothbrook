@@ -121,9 +121,16 @@ public class dashboardViewModel extends ViewModel implements LifecycleObserver {
        return model.getValue().getWorkoutTypes();
     }
 
-    public void addWorkout(String workoutType, int minutes, int reps) {
-        addWorkoutMinutes(minutes);
-        addWorkoutReps(workoutType,reps);
+    public void addWorkout(String workoutType, String minutes, String reps) {
+        if(workoutType!=null && !minutes.equals("") && !reps.equals("")) {
+            int m = Integer.parseInt(minutes);
+            int r = Integer.parseInt(reps);
+            if (m > 0 && r > 0) {
+                addWorkoutMinutes(m);
+                addWorkoutReps(workoutType, r);
+            }
+        }
+
     }
 
     private void addWorkoutReps(String workoutType, int reps) {

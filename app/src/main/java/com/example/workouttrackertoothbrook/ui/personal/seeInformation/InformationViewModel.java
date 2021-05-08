@@ -1,4 +1,4 @@
-package com.example.workouttrackertoothbrook.ui.personal;
+package com.example.workouttrackertoothbrook.ui.personal.seeInformation;
 
 import androidx.lifecycle.ViewModel;
 

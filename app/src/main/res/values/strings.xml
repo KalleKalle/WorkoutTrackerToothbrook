@@ -25,7 +25,7 @@
     <string name="weight">Weight</string>
     <string name="add_friend">Add Friend</string>
     <string name="options">Options</string>
-    <string name="information">Information</string>
+    <string name="information">Status</string>
     <string name="weightinfo">Weight:</string>
     <string name="heightinfo">Height:</string>
     <string name="set_goal">Set Goal</string>
@@ -39,5 +39,6 @@
     <string name="person">person</string>
     <string name="settingsinfo">settings</string>
     <string name="seeworkouts">seeworkouts</string>
-    <string name="see_information">See information</string>
+    <string name="see_information">Check Progress</string>
+    <string name="edit_body_information">Edit Body Information</string>
 </resources>

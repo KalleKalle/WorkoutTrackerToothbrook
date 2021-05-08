@@ -69,13 +69,12 @@ public class dashboardFragment extends Fragment {
 
         addWorkout.setOnClickListener(v -> {
             dashboardViewModel.addWorkout(spinner.getSelectedItem().toString(),
-                    Integer.parseInt(editMinutes.getText().toString()),
-                    Integer.parseInt(editReps.getText().toString()));
+                    editMinutes.getText().toString(),
+                    editReps.getText().toString());
             editReps.setText("");
             editMinutes.setText("");
             //minutes.setText("This week "+dashboardViewModel.getTimeString());
             Toast toast = Toast.makeText(getActivity().getApplicationContext(),"Workout added", Toast.LENGTH_LONG);
-            toast.setGravity(Gravity.CENTER,0,0);
             toast.show();
 
 

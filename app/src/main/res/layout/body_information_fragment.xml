@@ -4,8 +4,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".ui.personal.bodyInformation">
+    tools:context=".ui.personal.editBody.bodyInformationFragment">
 
+    <TextView
+        android:id="@+id/editInformation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/edit_body_information"
+        android:textSize="35sp"
+        android:background="@color/design_default_color_primary"
+        android:textColor="@color/white"
+        android:gravity="center"
+        />
     <TextView
         android:text="@string/name"
         android:layout_width="match_parent"
