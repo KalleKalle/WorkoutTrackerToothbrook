@@ -51,7 +51,21 @@
         />
 
     <EditText
-        android:id="@+id/weightOfUser"
+        android:id="@+id/WeightOfUser"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        />
+
+    <TextView
+        android:text="Target Weight"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:gravity="center"
+        />
+
+    <EditText
+        android:id="@+id/idealWeightOfUser"
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
         />

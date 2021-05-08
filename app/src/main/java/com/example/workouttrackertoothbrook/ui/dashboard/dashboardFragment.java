@@ -14,8 +14,10 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.example.workouttrackertoothbrook.Data.workoutModel;
 import com.example.workouttrackertoothbrook.R;
 
 public class dashboardFragment extends Fragment {
@@ -37,13 +39,20 @@ public class dashboardFragment extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
         dashboardViewModel = new ViewModelProvider(this).get(com.example.workouttrackertoothbrook.ui.dashboard.dashboardViewModel.class);
 
-        dashboardViewModel.getModel().observe(getViewLifecycleOwner(), workoutModel -> {
-            prevMinutes.setText("Last week: "+dashboardViewModel.getLastWeekTimeString());
-            minutes.setText("This week "+dashboardViewModel.getTimeString());
-            kilometers.setText("This week: "+dashboardViewModel.getKilometers().getValue().toString()+"Km");
-            prevKilometers.setText("Last week: "+dashboardViewModel.getPreviousKilometers().getValue().toString()+"Km");
-            averageKilometers.setText("Avg Distance: "+dashboardViewModel.getAverageKilometers().getValue().toString()+"Km");
-            averageMinutes.setText("Avg time: "+dashboardViewModel.getAvgTimeString());
+        dashboardViewModel.getModel().observe(getViewLifecycleOwner(), new Observer<workoutModel>() {
+            @Override
+            public void onChanged(workoutModel workoutModel) {
+                prevMinutes.setText("Last week: "+dashboardViewModel.getLastWeekTimeString());
+                minutes.setText("This week "+dashboardViewModel.getTimeString());
+                kilometers.setText("This week: "+dashboardViewModel.getKilometers().getValue().toString()+"Km");
+                prevKilometers.setText("Last week: "+dashboardViewModel.getPreviousKilometers().getValue().toString()+"Km");
+                averageKilometers.setText("Avg Distance: "+dashboardViewModel.getAverageKilometers().getValue().toString()+"Km");
+                averageMinutes.setText("Avg time: "+dashboardViewModel.getAvgTimeString());
+
+            }
+
+
+
 
         });
 
@@ -73,7 +82,7 @@ public class dashboardFragment extends Fragment {
                     editReps.getText().toString());
             editReps.setText("");
             editMinutes.setText("");
-            //minutes.setText("This week "+dashboardViewModel.getTimeString());
+            minutes.setText("This week "+dashboardViewModel.getTimeString());
             Toast toast = Toast.makeText(getActivity().getApplicationContext(),"Workout added", Toast.LENGTH_LONG);
             toast.show();
 

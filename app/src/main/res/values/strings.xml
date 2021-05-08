@@ -35,10 +35,12 @@
     <string name="kcal_burned_last_workout">kcal burned last workout:</string>
     <string name="km_left_until_goal_reached">Km left until goal reached:</string>
     <string name="see_workouts">See workouts</string>
-    <string name="Addfriend">TODO</string>
+    <string name="Addfriend">Add Friend</string>
     <string name="person">person</string>
     <string name="settingsinfo">settings</string>
     <string name="seeworkouts">seeworkouts</string>
     <string name="see_information">Check Progress</string>
     <string name="edit_body_information">Edit Body Information</string>
+    <string name="idealweightinfo">Target weight:</string>
+    <string name="friend_email_address">Friend Email address</string>
 </resources>

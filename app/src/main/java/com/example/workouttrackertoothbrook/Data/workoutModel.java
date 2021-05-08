@@ -17,6 +17,8 @@ public class workoutModel {
     double averageKilometers;
     double kilometers;
     double prevKilometers;
+    User self;
+    ArrayList<User> friends;
     ArrayList<String> workoutTypes;
 
     public static workoutModel getInstance()
@@ -28,6 +30,25 @@ public class workoutModel {
         return single_instance;
     }
 
+    public User getSelf() {
+        return self;
+    }
+
+    public void setSelf(User self) {
+        this.self = self;
+    }
+
+    public ArrayList<User> getFriends() {
+        return friends;
+    }
+
+    public void setFriends(ArrayList<User> friends) {
+        friends = friends;
+    }
+
+    public void addFriend(User user){
+        friends.add(user);
+    }
 
     private workoutModel() {
         workoutMinutes=-1;
