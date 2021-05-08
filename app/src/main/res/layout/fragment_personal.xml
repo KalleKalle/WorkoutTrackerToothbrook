@@ -1,13 +1,167 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.personal.personalFragment">
+    tools:context=".ui.personal.personalFragment"
+    android:background="@color/white"
+    android:orientation="vertical">
 
-    <TextView
+
+
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Hello" />
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
 
-</FrameLayout>
+        <ImageView
+            android:id="@+id/imageBody"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:src="@drawable/ic_baseline_person_24"
+            android:contentDescription="@string/person" />
+
+        <TextView
+            android:id="@+id/textBody"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="4"
+            android:textSize="30sp"
+            android:clickable="true"
+            android:text="@string/body_information"
+            android:focusable="true" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <ImageView
+            android:id="@+id/imageSettings"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/ic_baseline_settings_24"
+            android:contentDescription="@string/settingsinfo" />
+        <TextView
+            android:id="@+id/TextSettings"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="4"
+            android:textSize="30sp"
+            android:clickable="true"
+            android:text="@string/settings"
+            android:focusable="true" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/addfriendImage"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:src="@drawable/ic_baseline_person_add_alt_1_24"
+            android:focusable="true"
+            android:contentDescription="@string/add_friend" />
+
+        <TextView
+            android:id="@+id/addFriendText"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="6"
+            android:textSize="30sp"
+            android:clickable="true"
+            android:text="@string/add_friend"
+            android:focusable="true" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/setGoalImage"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:src="@drawable/ic_baseline_outlined_flag_24"
+            android:focusable="true"
+            android:contentDescription="@string/Addfriend" />
+
+        <TextView
+            android:id="@+id/setGoalText"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="6"
+            android:textSize="30sp"
+            android:clickable="true"
+            android:text="@string/set_goal"
+            android:focusable="true" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/seeWorkoutsImage"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:src="@drawable/ic_baseline_directions_run_24"
+            android:focusable="true"
+            android:contentDescription="@string/seeworkouts" />
+
+        <TextView
+            android:id="@+id/seeWorkoutsText"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="6"
+            android:textSize="30sp"
+            android:clickable="true"
+            android:text="@string/see_workouts"
+            android:focusable="true" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/SeeinformationImage"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:src="@drawable/ic_baseline_psychology_24"
+            android:focusable="true"
+            android:contentDescription="@string/see_information" />
+
+        <TextView
+            android:id="@+id/seeinformationText"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="6"
+            android:textSize="30sp"
+            android:clickable="true"
+            android:text="@string/see_information"
+            android:focusable="true" />
+    </LinearLayout>
+
+    <fragment
+        android:id="@+id/fragmentpart"
+        android:name="com.example.workouttrackertoothbrook.ui.personal.Information"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+
+</LinearLayout>

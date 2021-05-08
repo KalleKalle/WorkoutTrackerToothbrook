@@ -17,4 +17,27 @@
     <string name="add_workout_button">Add workout</string>
     <string name="number_of_minutes">number of minutes</string>
     <string name="personal">Personal</string>
+    <string name="averageminutes">averageMinutes</string>
+    <string name="settings">Settings</string>
+    <string name="body_information">Edit Body Information</string>
+    <string name="name">Name</string>
+    <string name="height">Height</string>
+    <string name="weight">Weight</string>
+    <string name="add_friend">Add Friend</string>
+    <string name="options">Options</string>
+    <string name="information">Information</string>
+    <string name="weightinfo">Weight:</string>
+    <string name="heightinfo">Height:</string>
+    <string name="set_goal">Set Goal</string>
+    <string name="kcal_burned_this_week">kcal burned this week:</string>
+    <string name="your_bmi">Your BMI:</string>
+    <string name="kcal_left_until_goal_reached">kcal left until goal reached:</string>
+    <string name="kcal_burned_last_workout">kcal burned last workout:</string>
+    <string name="km_left_until_goal_reached">Km left until goal reached:</string>
+    <string name="see_workouts">See workouts</string>
+    <string name="Addfriend">TODO</string>
+    <string name="person">person</string>
+    <string name="settingsinfo">settings</string>
+    <string name="seeworkouts">seeworkouts</string>
+    <string name="see_information">See information</string>
 </resources>

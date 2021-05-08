@@ -5,11 +5,12 @@ import com.example.workouttrackertoothbrook.Data.workoutModel;
 
 import java.util.ArrayList;
 
+import androidx.lifecycle.LifecycleObserver;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class dashboardViewModel extends ViewModel {
+public class dashboardViewModel extends ViewModel implements LifecycleObserver {
 
     private MutableLiveData<String> mText;
     private MutableLiveData<workoutModel> model;

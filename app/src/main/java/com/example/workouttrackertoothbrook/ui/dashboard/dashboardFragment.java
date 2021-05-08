@@ -1,6 +1,7 @@
 package com.example.workouttrackertoothbrook.ui.dashboard;
 
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,6 +36,7 @@ public class dashboardFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         dashboardViewModel = new ViewModelProvider(this).get(com.example.workouttrackertoothbrook.ui.dashboard.dashboardViewModel.class);
+
         dashboardViewModel.getModel().observe(getViewLifecycleOwner(), workoutModel -> {
             prevMinutes.setText("Last week: "+dashboardViewModel.getLastWeekTimeString());
             minutes.setText("This week "+dashboardViewModel.getTimeString());
@@ -72,7 +74,9 @@ public class dashboardFragment extends Fragment {
             editReps.setText("");
             editMinutes.setText("");
             //minutes.setText("This week "+dashboardViewModel.getTimeString());
-            Toast.makeText(getContext(),"Workout added", Toast.LENGTH_LONG).show();
+            Toast toast = Toast.makeText(getActivity().getApplicationContext(),"Workout added", Toast.LENGTH_LONG);
+            toast.setGravity(Gravity.CENTER,0,0);
+            toast.show();
 
 
         });
