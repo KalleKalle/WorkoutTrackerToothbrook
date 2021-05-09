@@ -1,13 +1,86 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.personal.setGoal.setGoalFragment">
+    tools:context=".ui.personal.setGoal.setGoalFragment"
+    android:orientation="vertical">
+
+
 
     <TextView
+        android:id="@+id/setgoaltitle"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Hello" />
+        android:layout_height="wrap_content"
+        android:text="@string/set_goaltitle"
+        android:textSize="35sp"
+        android:background="@color/design_default_color_primary"
+        android:textColor="@color/white"
+        android:gravity="center"
+        />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <TextView
+                android:text="@string/target_weight"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
 
-</FrameLayout>
+                android:textSize="20sp"
+                android:gravity="center"
+                />
+
+            <EditText
+                android:id="@+id/idealWeightOfUser"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:hint="@string/no_goal_set"
+                android:inputType="numberDecimal"
+                />
+
+            <TextView
+                android:text="@string/target_km_for_week"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:gravity="center"
+                />
+
+            <EditText
+                android:id="@+id/targetKm"
+                android:layout_height="wrap_content"
+                android:hint="@string/no_goal_set"
+                android:inputType="numberDecimal"
+                android:layout_width="match_parent"
+                />
+
+            <TextView
+                android:text="@string/target_kcal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:gravity="center"
+                />
+
+            <EditText
+                android:id="@+id/target_Kcal"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:hint="@string/no_goal_set"
+                android:layout_width="match_parent"
+                />
+        </LinearLayout>
+    </ScrollView>
+
+    <Button
+        android:id="@+id/saveGoal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/save" />
+
+
+</LinearLayout>

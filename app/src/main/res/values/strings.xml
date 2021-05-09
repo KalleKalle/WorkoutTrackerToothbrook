@@ -21,8 +21,8 @@
     <string name="settings">Settings</string>
     <string name="body_information">Edit Body Information</string>
     <string name="name">Name</string>
-    <string name="height">Height</string>
-    <string name="weight">Weight</string>
+    <string name="height">Height(in cm)</string>
+    <string name="weight">Weight(in Kg)</string>
     <string name="add_friend">Add Friend</string>
     <string name="options">Options</string>
     <string name="information">Status</string>
@@ -43,4 +43,14 @@
     <string name="edit_body_information">Edit Body Information</string>
     <string name="idealweightinfo">Target weight:</string>
     <string name="friend_email_address">Friend Email address</string>
+    <string name="target_weight">Target Weight</string>
+    <string name="save">Save</string>
+    <string name="email">Email</string>
+    <string name="set_goaltitle">Set goal</string>
+    <string name="target_km_for_week">Target Km for week</string>
+    <string name="target_kcal">Target Kcal</string>
+    <string name="no_goal_set">No goal set</string>
+    <string name="no_settings">No Settings</string>
+    <string name="workouts">Workouts</string>
+    <string name="add">add</string>
 </resources>

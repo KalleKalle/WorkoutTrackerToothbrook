@@ -13,6 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
@@ -37,24 +38,7 @@ public class dashboardFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        dashboardViewModel = new ViewModelProvider(this).get(com.example.workouttrackertoothbrook.ui.dashboard.dashboardViewModel.class);
 
-        dashboardViewModel.getModel().observe(getViewLifecycleOwner(), new Observer<workoutModel>() {
-            @Override
-            public void onChanged(workoutModel workoutModel) {
-                prevMinutes.setText("Last week: "+dashboardViewModel.getLastWeekTimeString());
-                minutes.setText("This week "+dashboardViewModel.getTimeString());
-                kilometers.setText("This week: "+dashboardViewModel.getKilometers().getValue().toString()+"Km");
-                prevKilometers.setText("Last week: "+dashboardViewModel.getPreviousKilometers().getValue().toString()+"Km");
-                averageKilometers.setText("Avg Distance: "+dashboardViewModel.getAverageKilometers().getValue().toString()+"Km");
-                averageMinutes.setText("Avg time: "+dashboardViewModel.getAvgTimeString());
-
-            }
-
-
-
-
-        });
 
         View root = inflater.inflate(R.layout.fragment_dashboard, container, false);
         spinner = root.findViewById(R.id.workoutname);
@@ -72,6 +56,38 @@ public class dashboardFragment extends Fragment {
 
 
 
+
+
+       /* prevMinutes.setText(dashboardViewModel.getPreviousMinutes().getValue().toString());
+        minutes.setText(dashboardViewModel.getMinutes().getValue().toString());
+        kilometers.setText(dashboardViewModel.getKilometers().getValue().toString());
+        prevKilometers.setText(dashboardViewModel.getPreviousKilometers().getValue().toString());
+
+        */
+        //final TextView textView = root.findViewById(R.id.text_dashboard);
+
+        return root;
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+
+        dashboardViewModel = new ViewModelProvider(this).get(com.example.workouttrackertoothbrook.ui.dashboard.dashboardViewModel.class);
+
+        dashboardViewModel.getModel().observe(getActivity(), new Observer<workoutModel>() {
+            @Override
+            public void onChanged(workoutModel workoutModel) {
+                prevMinutes.setText("Last week: " + dashboardViewModel.getLastWeekTimeString());
+                minutes.setText("This week " + dashboardViewModel.getTimeString());
+                kilometers.setText("This week: " + dashboardViewModel.getKilometers().getValue().toString() + "Km");
+                prevKilometers.setText("Last week: " + dashboardViewModel.getPreviousKilometers().getValue().toString() + "Km");
+                averageKilometers.setText("Avg Distance: " + dashboardViewModel.getAverageKilometers().getValue().toString() + "Km");
+                averageMinutes.setText("Avg time: " + dashboardViewModel.getAvgTimeString());
+
+            }
+        });
+
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_item,dashboardViewModel.getWorkoutTypes());
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(arrayAdapter);
@@ -83,21 +99,9 @@ public class dashboardFragment extends Fragment {
             editReps.setText("");
             editMinutes.setText("");
             minutes.setText("This week "+dashboardViewModel.getTimeString());
-            Toast toast = Toast.makeText(getActivity().getApplicationContext(),"Workout added", Toast.LENGTH_LONG);
+            Toast toast = Toast.makeText(getActivity(),"Workout added", Toast.LENGTH_LONG);
             toast.show();
-
-
         });
-
-       /* prevMinutes.setText(dashboardViewModel.getPreviousMinutes().getValue().toString());
-        minutes.setText(dashboardViewModel.getMinutes().getValue().toString());
-        kilometers.setText(dashboardViewModel.getKilometers().getValue().toString());
-        prevKilometers.setText(dashboardViewModel.getPreviousKilometers().getValue().toString());
-
-        */
-        //final TextView textView = root.findViewById(R.id.text_dashboard);
-
-        return root;
     }
 
 }

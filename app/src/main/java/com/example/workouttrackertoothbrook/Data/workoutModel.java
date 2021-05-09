@@ -2,21 +2,25 @@ package com.example.workouttrackertoothbrook.Data;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
 
 public class workoutModel {
 
 
     private static workoutModel single_instance = null;
 
-    Map<String, Integer> workouts;
-    Map<String, Integer> previousWeekWorkouts;
+    ArrayList<Workout> workouts;
+    ArrayList<Workout> previousWeekWorkouts;
     int workoutMinutes;
     int previousWeekMinutes;
     int averageMinutes;
     double averageKilometers;
     double kilometers;
     double prevKilometers;
+
+    double TWeight;
+    int TKcal;
+    double TKm;
+
     User self;
     ArrayList<User> friends;
     ArrayList<String> workoutTypes;
@@ -43,23 +47,52 @@ public class workoutModel {
     }
 
     public void setFriends(ArrayList<User> friends) {
-        friends = friends;
+        this.friends = friends;
     }
 
     public void addFriend(User user){
         friends.add(user);
     }
 
+    public double getTWeight() {
+        return TWeight;
+    }
+
+    public void setTWeight(double TWeight) {
+        this.TWeight = TWeight;
+    }
+
+    public int getTKcal() {
+        return TKcal;
+    }
+
+    public void setTKcal(int TKcal) {
+        this.TKcal = TKcal;
+    }
+
+    public double getTKm() {
+        return TKm;
+    }
+
+    public void setTKm(double TKm) {
+        this.TKm = TKm;
+    }
+
     private workoutModel() {
         workoutMinutes=-1;
+        TWeight= 85;
+        TKcal=88000;
+        TKm=20;
         previousWeekMinutes=-1;
         averageKilometers=-1;
         averageMinutes=-1;
         kilometers=-1;
         WorkoutTypesCreator();
         prevKilometers=-1;
-        workouts= new HashMap<>();
-        previousWeekWorkouts = new HashMap<>();
+        workouts= new ArrayList<>();
+        previousWeekWorkouts = new ArrayList<>();
+        friends=new ArrayList<>();
+        self = new User("test@mail.com","John",180,88.4);
     }
 
     private void WorkoutTypesCreator() {
@@ -77,7 +110,7 @@ public class workoutModel {
         workoutTypes.add("Superman");
     }
 
-    public Map<String, Integer> getWorkouts() {
+    public ArrayList<Workout> getWorkouts() {
         return workouts;
     }
 
@@ -97,15 +130,15 @@ public class workoutModel {
         this.prevKilometers = prevKilometers;
     }
 
-    public void setWorkouts(Map<String, Integer> workouts) {
+    public void setWorkouts(ArrayList<Workout> workouts) {
         this.workouts = workouts;
     }
 
-    public Map<String, Integer> getPreviousWeekWorkouts() {
+    public ArrayList<Workout> getPreviousWeekWorkouts() {
         return previousWeekWorkouts;
     }
 
-    public void setPreviousWeekWorkouts(Map<String, Integer> previousWeekWorkouts) {
+    public void setPreviousWeekWorkouts(ArrayList<Workout> previousWeekWorkouts) {
         this.previousWeekWorkouts = previousWeekWorkouts;
     }
 

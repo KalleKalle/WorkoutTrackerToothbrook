@@ -16,7 +16,7 @@ public class AddFriendViewModel extends ViewModel {
     }
     public User searchForFriend(String email) {
 
-        return new User("test@mail.cl","John Connor");
+        return network.searchForFriend(email);
 
     }
 
