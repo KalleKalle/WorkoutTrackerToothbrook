@@ -1,19 +1,28 @@
 package com.example.workouttrackertoothbrook.ui.social;
 
+import com.example.workouttrackertoothbrook.Data.Network;
+import com.example.workouttrackertoothbrook.Data.workoutModel;
+
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 public class socialViewModel extends ViewModel {
 
-    private MutableLiveData<String> mText;
+    private workoutModel model;
+    private Network network;
 
     public socialViewModel() {
-        mText = new MutableLiveData<>();
-        mText.setValue("This is social fragment");
+        model= workoutModel.getInstance();
+        network= new Network();
     }
 
-    public LiveData<String> getText() {
-        return mText;
+    public Group searchForGroup(String groupName) {
+
+       return network.searchforGroup(groupName);
+    }
+
+    public void addGroup(Group group) {
+        network.addGroup(group,model.getSelf());
     }
 }
