@@ -14,9 +14,13 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.workouttrackertoothbrook.R;
 import com.example.workouttrackertoothbrook.ui.personal.addFriend.AddFriendViewModel;
+
+import java.util.List;
 
 public class socialFragment extends Fragment {
 
@@ -25,7 +29,8 @@ public class socialFragment extends Fragment {
     private Button addGroup;
     private ImageView search;
     private EditText searchbar;
-    Group group;
+    private RecyclerView groupsView;
+    private Group group;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -35,6 +40,10 @@ public class socialFragment extends Fragment {
         addGroup= root.findViewById(R.id.addGroupButton);
         search= root.findViewById(R.id.searchGroupButton);
         searchbar= root.findViewById(R.id.findGroup);
+        groupsView= root.findViewById(R.id.recycleGroup);
+
+        groupsView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        groupsView.hasFixedSize();
 
         return root;
     }
@@ -43,6 +52,11 @@ public class socialFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         viewModel = new ViewModelProvider(this).get(socialViewModel.class);
+
+        groupAdapter groupAdapter= new groupAdapter(viewModel.getGroups(),getActivity());
+
+        groupsView.setAdapter(groupAdapter);
+
         search.setOnClickListener(v -> {
             group= viewModel.searchForGroup(searchbar.getText().toString());
             if(group!=null){
