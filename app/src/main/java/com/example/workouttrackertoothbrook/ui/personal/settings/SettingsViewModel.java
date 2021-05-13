@@ -14,5 +14,4 @@ public class SettingsViewModel extends ViewModel {
     public void addWorkoutType(String workoutType) {
         model.addWorkoutType(workoutType);
     }
-    // TODO: Implement the ViewModel
 }

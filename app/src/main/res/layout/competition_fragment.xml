@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.social.group.competitions.competitionFragment">
+
+    <TextView
+        android:id="@+id/groupCompetionTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/design_default_color_primary"
+        android:gravity="center"
+        android:text="@string/competition"
+        android:textColor="@color/white"
+        android:textSize="35sp"
+
+        />
+
+    <TextView
+        android:id="@+id/typeofCompetition"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/there_s_no_current_competition"
+        android:textSize="24sp"/>
+
+    <Button
+        android:id="@+id/createCompetitionButton"
+        android:layout_width="wrap_content"
+        android:layout_gravity="center"
+        android:layout_height="wrap_content"
+        android:text="@string/create_competition" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerCompetitionContestants"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+
+</LinearLayout>

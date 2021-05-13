@@ -1,15 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.social.groupFragment">
+    tools:context=".ui.social.group.groupFragment"
+    android:orientation="vertical"
+    android:background="@color/white">
 
-    <TextView
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Hello"
-        android:background="@color/white"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/backToGroup"
+            android:layout_width="0dp"
+            android:clickable="true"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:visibility="gone"
+            android:src="@drawable/ic_baseline_arrow_back_24"
+            android:focusable="true" />
+
+        <ImageView
+            android:id="@+id/members"
+            android:clickable="true"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="2"
+            android:src="@drawable/ic_baseline_groups_24"
+            android:focusable="true" />
+
+        <ImageView
+            android:id="@+id/competition"
+            android:clickable="true"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="2"
+            android:src="@drawable/ic_baseline_outlined_flag_24"
+            android:focusable="true" />
+
+
+
+    </LinearLayout>
+    <TextView
+        android:id="@+id/groupNameTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="GroupName"
+        android:textSize="35sp"
+        android:gravity="center"
         />
+
+    <FrameLayout
+        android:id="@+id/groupSubFragment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
 
 </LinearLayout>

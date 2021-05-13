@@ -55,4 +55,11 @@
     <string name="add">add</string>
     <string name="add_group">add group</string>
     <string name="find_group">Find group</string>
+    <string name="add_groupButton">Add group</string>
+    <string name="add_groupTitle">Add Group</string>
+    <string name="Create_groupButton">Create group</string>
+    <string name="groupmembers">GroupMembers</string>
+    <string name="competition">Competition</string>
+    <string name="there_s_no_current_competition">There is currently no competition</string>
+    <string name="create_competition">Create a competition</string>
 </resources>

@@ -6,6 +6,32 @@ public class User {
     private String Name;
     private int Height;
     private double Weight;
+    private int workoutMinutes;
+    double kilometers;
+
+    public User(String email, String name,int height,double weight) {
+        Email = email;
+        Name = name;
+        Height=height;
+        Weight=weight;
+
+    }
+
+    public int getWorkoutMinutes() {
+        return workoutMinutes;
+    }
+
+    public void setWorkoutMinutes(int workoutMinutes) {
+        this.workoutMinutes = workoutMinutes;
+    }
+
+    public double getKilometers() {
+        return kilometers;
+    }
+
+    public void setKilometers(double kilometers) {
+        this.kilometers = kilometers;
+    }
 
     public String getId() {
         return id;
@@ -44,11 +70,5 @@ public class User {
         Name = name;
     }
 
-    public User(String email, String name,int height,double weight) {
-        Email = email;
-        Name = name;
-        Height=height;
-        Weight=weight;
 
-    }
 }

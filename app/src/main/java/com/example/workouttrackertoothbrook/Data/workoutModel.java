@@ -16,6 +16,15 @@ public class workoutModel {
     double averageKilometers;
     double kilometers;
     double prevKilometers;
+    String username;
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
 
     double TWeight;
     int TKcal;
@@ -120,6 +129,7 @@ public class workoutModel {
 
     public void setKilometers(double kilometers) {
         this.kilometers = kilometers;
+        self.setKilometers(kilometers);
     }
 
     public double getPrevKilometers() {
@@ -147,7 +157,9 @@ public class workoutModel {
     }
 
     public void setWorkoutMinutes(int workoutMinutes) {
+
         this.workoutMinutes = workoutMinutes;
+        self.setWorkoutMinutes(workoutMinutes);
     }
 
     public int getPreviousWeekMinutes() {

@@ -55,8 +55,15 @@
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:id="@+id/recycleGroup"
-        android:layout_height="match_parent" />
+        android:layout_height="wrap_content" />
 
+
+
+    <Button
+        android:id="@+id/CreateGroupbutton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/Create_groupButton" />
 
 
 </LinearLayout>

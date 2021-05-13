@@ -10,9 +10,12 @@
 
 
     <LinearLayout
+        android:id="@+id/bodyLayout"
+        android:clickable="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:focusable="true">
 
         <ImageView
             android:id="@+id/imageBody"
@@ -34,9 +37,12 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/settingsLayout"
         android:layout_width="match_parent"
+        android:clickable="true"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:focusable="true">
         <ImageView
             android:id="@+id/imageSettings"
             android:layout_width="50dp"
@@ -55,9 +61,12 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/friendLayout"
         android:layout_width="match_parent"
+        android:clickable="true"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:focusable="true">
 
         <ImageView
             android:id="@+id/addfriendImage"
@@ -80,9 +89,12 @@
             android:focusable="true" />
     </LinearLayout>
     <LinearLayout
+        android:id="@+id/goalLayout"
+        android:clickable="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:focusable="true">
 
         <ImageView
             android:id="@+id/setGoalImage"
@@ -105,9 +117,12 @@
             android:focusable="true" />
     </LinearLayout>
     <LinearLayout
+        android:id="@+id/workoutLayout"
+        android:clickable="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:focusable="true">
 
         <ImageView
             android:id="@+id/seeWorkoutsImage"
@@ -130,9 +145,12 @@
             android:focusable="true" />
     </LinearLayout>
     <LinearLayout
+        android:id="@+id/progressLayout"
+        android:clickable="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:focusable="true">
 
         <ImageView
             android:id="@+id/SeeinformationImage"

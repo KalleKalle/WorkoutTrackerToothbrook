@@ -19,5 +19,3 @@ public class PersonalViewModel extends ViewModel {
             trans.commit();
         }
     }
-
-    // TODO: Implement the ViewModel

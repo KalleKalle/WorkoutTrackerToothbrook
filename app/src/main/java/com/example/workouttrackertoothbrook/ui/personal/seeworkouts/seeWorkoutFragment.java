@@ -42,7 +42,7 @@ public class seeWorkoutFragment extends Fragment {
         workouts.setLayoutManager(new LinearLayoutManager(getActivity()));
         workouts.hasFixedSize();
 
-        workoutAdapter workoutAdapter= new workoutAdapter(mViewModel.getModel().getWorkouts());
+        workoutAdapter workoutAdapter= new workoutAdapter(mViewModel.getWorkouts());
 
         workouts.setAdapter(workoutAdapter);
     }

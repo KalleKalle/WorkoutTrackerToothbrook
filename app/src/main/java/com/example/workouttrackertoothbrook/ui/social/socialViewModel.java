@@ -1,12 +1,11 @@
 package com.example.workouttrackertoothbrook.ui.social;
 
+import com.example.workouttrackertoothbrook.Data.Group;
 import com.example.workouttrackertoothbrook.Data.Network;
 import com.example.workouttrackertoothbrook.Data.workoutModel;
 
 import java.util.List;
 
-import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 public class socialViewModel extends ViewModel {
@@ -34,4 +33,7 @@ public class socialViewModel extends ViewModel {
     }
 
 
+    public void createGroup(String groupName) {
+        network.CreateGroup(groupName,model.getSelf());
+    }
 }

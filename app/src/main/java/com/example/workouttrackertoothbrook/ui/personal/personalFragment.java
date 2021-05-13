@@ -3,6 +3,7 @@ package com.example.workouttrackertoothbrook.ui.personal;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -12,6 +13,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.workouttrackertoothbrook.R;
@@ -31,6 +33,12 @@ public class personalFragment extends Fragment {
     private TextView setGoal;
     private TextView seeWorkouts;
     private TextView seeInformation;
+    private LinearLayout bodyLayout;
+    private LinearLayout settingsLayout;
+    private LinearLayout friendLayout;
+    private LinearLayout goalLayout;
+    private LinearLayout workoutLayout;
+    private LinearLayout InformationLayout;
 
     public static personalFragment newInstance() {
         return new personalFragment();
@@ -49,6 +57,12 @@ public class personalFragment extends Fragment {
         setGoal= root.findViewById(R.id.setGoalText);
         seeWorkouts= root.findViewById(R.id.seeWorkoutsText);
         seeInformation= root.findViewById(R.id.seeinformationText);
+        bodyLayout= root.findViewById(R.id.bodyLayout);
+        settingsLayout =root.findViewById(R.id.settingsLayout);
+        friendLayout=root.findViewById(R.id.friendLayout);
+        goalLayout=root.findViewById(R.id.goalLayout);
+        workoutLayout=root.findViewById(R.id.workoutLayout);
+        InformationLayout=root.findViewById(R.id.progressLayout);
 
 
 
@@ -64,12 +78,61 @@ public class personalFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
         mViewModel = new ViewModelProvider(this).get(PersonalViewModel.class);
 
-        editBody.setOnClickListener(v -> mViewModel.changeFragment(new bodyInformationFragment(),getActivity()));
-        settings.setOnClickListener(v -> mViewModel.changeFragment(new settingsFragment(),getActivity()));
-        addFriend.setOnClickListener(v -> mViewModel.changeFragment(new addFriendFragment(),getActivity()));
-        setGoal.setOnClickListener(v -> mViewModel.changeFragment(new setGoalFragment(),getActivity()));
-        seeWorkouts.setOnClickListener(v -> mViewModel.changeFragment(new seeWorkoutFragment(),getActivity()));
-        seeInformation.setOnClickListener(v -> mViewModel.changeFragment(new InformationFragment(),getActivity()));
+        editBody.setOnClickListener(v -> {
+            mViewModel.changeFragment(new bodyInformationFragment(),getActivity());
+            bodyLayout.setBackgroundColor(Color.CYAN);
+            settingsLayout.setBackgroundColor(Color.WHITE);
+            friendLayout.setBackgroundColor(Color.WHITE);
+            goalLayout.setBackgroundColor(Color.WHITE);
+            workoutLayout.setBackgroundColor(Color.WHITE);
+            InformationLayout.setBackgroundColor(Color.WHITE);
+        });
+
+        settings.setOnClickListener(v -> {
+            mViewModel.changeFragment(new settingsFragment(),getActivity());
+            bodyLayout.setBackgroundColor(Color.WHITE);
+            settingsLayout.setBackgroundColor(Color.CYAN);
+            friendLayout.setBackgroundColor(Color.WHITE);
+            goalLayout.setBackgroundColor(Color.WHITE);
+            workoutLayout.setBackgroundColor(Color.WHITE);
+            InformationLayout.setBackgroundColor(Color.WHITE);
+        });
+        addFriend.setOnClickListener(v -> {
+            mViewModel.changeFragment(new addFriendFragment(),getActivity());
+            bodyLayout.setBackgroundColor(Color.WHITE);
+            settingsLayout.setBackgroundColor(Color.WHITE);
+            friendLayout.setBackgroundColor(Color.CYAN);
+            goalLayout.setBackgroundColor(Color.WHITE);
+            workoutLayout.setBackgroundColor(Color.WHITE);
+            InformationLayout.setBackgroundColor(Color.WHITE);
+        });
+        setGoal.setOnClickListener(v -> {
+            mViewModel.changeFragment(new setGoalFragment(),getActivity());
+            bodyLayout.setBackgroundColor(Color.WHITE);
+            settingsLayout.setBackgroundColor(Color.WHITE);
+            friendLayout.setBackgroundColor(Color.WHITE);
+            goalLayout.setBackgroundColor(Color.CYAN);
+            workoutLayout.setBackgroundColor(Color.WHITE);
+            InformationLayout.setBackgroundColor(Color.WHITE);
+        });
+        seeWorkouts.setOnClickListener(v -> {
+            mViewModel.changeFragment(new seeWorkoutFragment(),getActivity());
+            bodyLayout.setBackgroundColor(Color.WHITE);
+            settingsLayout.setBackgroundColor(Color.WHITE);
+            friendLayout.setBackgroundColor(Color.WHITE);
+            goalLayout.setBackgroundColor(Color.WHITE);
+            workoutLayout.setBackgroundColor(Color.CYAN);
+            InformationLayout.setBackgroundColor(Color.WHITE);
+        });
+        seeInformation.setOnClickListener(v -> {
+            mViewModel.changeFragment(new InformationFragment(),getActivity());
+            bodyLayout.setBackgroundColor(Color.WHITE);
+            settingsLayout.setBackgroundColor(Color.WHITE);
+            friendLayout.setBackgroundColor(Color.WHITE);
+            goalLayout.setBackgroundColor(Color.WHITE);
+            workoutLayout.setBackgroundColor(Color.WHITE);
+            InformationLayout.setBackgroundColor(Color.CYAN);
+        });
 
 
     }
