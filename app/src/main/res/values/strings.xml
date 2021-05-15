@@ -62,4 +62,12 @@
     <string name="competition">Competition</string>
     <string name="there_s_no_current_competition">There is currently no competition</string>
     <string name="create_competition">Create a competition</string>
+    <string name="register">Register new user</string>
+    <string name="regemail">Enter your email</string>
+    <string name="confirm_password">Confirm password</string>
+    <string name="enter_password">Enter password</string>
+    <string name="sign_up">Sign up</string>
+    <string name="login">Login</string>
+    <string name="don_t_have_a_user_register_here">Don\'t Have a User? Register here</string>
+    <string name="logout">Logout</string>
 </resources>

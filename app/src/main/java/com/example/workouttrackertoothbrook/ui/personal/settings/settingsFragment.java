@@ -2,6 +2,7 @@ package com.example.workouttrackertoothbrook.ui.personal.settings;
 
 import androidx.lifecycle.ViewModelProvider;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -14,13 +15,16 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.example.workouttrackertoothbrook.MainActivity;
 import com.example.workouttrackertoothbrook.R;
+import com.example.workouttrackertoothbrook.login.Login;
 
 public class settingsFragment extends Fragment {
 
     private SettingsViewModel mViewModel;
     private EditText workoutType;
     private Button addWorkouttype;
+    private Button logout;
 
     public static settingsFragment newInstance() {
         return new settingsFragment();
@@ -32,6 +36,7 @@ public class settingsFragment extends Fragment {
         View root= inflater.inflate(R.layout.settings_fragment, container, false);
         workoutType= root.findViewById(R.id.workoutType);
         addWorkouttype= root.findViewById(R.id.addWorkoutType);
+        logout= root.findViewById(R.id.logout);
         return root;
     }
 
@@ -40,6 +45,11 @@ public class settingsFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
         mViewModel = new ViewModelProvider(this).get(SettingsViewModel.class);
         addWorkouttype.setOnClickListener(v -> mViewModel.addWorkoutType(workoutType.getText().toString()));
+        logout.setOnClickListener(v -> {
+            mViewModel.logoutUser();
+            startActivity(new Intent(getActivity().getApplicationContext(), Login.class));
+            getActivity().finish();
+        });
 
 
     }

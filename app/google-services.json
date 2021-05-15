@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "455351172557",
+    "project_id": "workouttrackertoothbrook",
+    "storage_bucket": "workouttrackertoothbrook.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:455351172557:android:5962a1cd965ca80e965884",
+        "android_client_info": {
+          "package_name": "com.example.workouttrackertoothbrook"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "455351172557-bstghtcpbpje9lgcl1iq5vbkmlr5sbvr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCYH-30blsFE8AQ2TMt4Ul_Wuu5SPuKq4M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "455351172557-bstghtcpbpje9lgcl1iq5vbkmlr5sbvr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
