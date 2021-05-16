@@ -26,7 +26,6 @@ public class bodyInformationFragment extends Fragment {
     private EditText height;
     private EditText weight;
     private Button save;
-    private EditText email;
 
     public static bodyInformationFragment newInstance() {
         return new bodyInformationFragment();
@@ -39,7 +38,6 @@ public class bodyInformationFragment extends Fragment {
         name = root.findViewById(R.id.nameOfUser);
         height= root.findViewById(R.id.heightOfUser);
         weight= root.findViewById(R.id.WeightOfUser);
-        email= root.findViewById(R.id.emailOfUser);
 
         save= root.findViewById(R.id.saveEditInformation);
 
@@ -55,11 +53,10 @@ public class bodyInformationFragment extends Fragment {
         name.setText(mViewModel.getName());
         height.setText(mViewModel.getHeight());
         weight.setText(mViewModel.getWeight());
-        email.setText(mViewModel.getEmail());
 
 
         save.setOnClickListener(v -> {
-            mViewModel.saveInformation(name.getText().toString(),height.getText().toString(),weight.getText().toString(),email.getText().toString());
+            mViewModel.saveInformation(name.getText().toString(),height.getText().toString(),weight.getText().toString());
             Toast toast= Toast.makeText(getActivity(),"Saved",Toast.LENGTH_LONG);
             toast.show();
         });

@@ -3,17 +3,17 @@ package com.example.workouttrackertoothbrook.Data;
 import java.util.Date;
 
 public class Workout {
-    String Type;
+    String type;
     int duration;
-    Date time;
+    String time;
     int reps;
     int calories;
 
     public Workout(String type, int duration, Date time, int reps, int calories) {
-        Type = type;
+        this.type = type;
         this.calories=calories;
         this.duration = duration;
-        this.time = time;
+        this.time = time.toString();
         this.reps = reps;
     }
 
@@ -26,11 +26,11 @@ public class Workout {
     }
 
     public String getType() {
-        return Type;
+        return type;
     }
 
     public void setType(String type) {
-        Type = type;
+        this.type = type;
     }
 
     public String getDuration() {
@@ -46,7 +46,7 @@ public class Workout {
     }
 
     public void setTime(Date time) {
-        this.time = time;
+        this.time = time.toString();;
     }
 
     public String getReps() {

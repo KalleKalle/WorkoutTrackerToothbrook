@@ -1,6 +1,7 @@
 package com.example.workouttrackertoothbrook.ui.dashboard;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,6 +21,18 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.workouttrackertoothbrook.Data.workoutModel;
 import com.example.workouttrackertoothbrook.R;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.gson.Gson;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class dashboardFragment extends Fragment {
 
@@ -34,6 +47,9 @@ public class dashboardFragment extends Fragment {
     Button addWorkout;
     EditText editMinutes;
     EditText editReps;
+    FirebaseAuth firebaseAuth;
+    FirebaseFirestore firestore;
+    String userId;
 
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -50,8 +66,12 @@ public class dashboardFragment extends Fragment {
         prevKilometers= root.findViewById(R.id.kilometersPreviousWeek);
         editMinutes = root.findViewById(R.id.editMinutes);
         editReps= root.findViewById(R.id.editWorkoutReps);
-
         addWorkout = root.findViewById(R.id.AddWorkoutButton);
+
+        firebaseAuth= FirebaseAuth.getInstance();
+        firestore= FirebaseFirestore.getInstance();
+        userId = firebaseAuth.getUid();
+
 
 
 
@@ -78,15 +98,33 @@ public class dashboardFragment extends Fragment {
         dashboardViewModel.getModel().observe(getActivity(), new Observer<workoutModel>() {
             @Override
             public void onChanged(workoutModel workoutModel) {
-                prevMinutes.setText("Last week: " + dashboardViewModel.getLastWeekTimeString());
-                minutes.setText("This week " + dashboardViewModel.getTimeString());
-                kilometers.setText("This week: " + dashboardViewModel.getKilometers().getValue().toString() + "Km");
-                prevKilometers.setText("Last week: " + dashboardViewModel.getPreviousKilometers().getValue().toString() + "Km");
-                averageKilometers.setText("Avg Distance: " + dashboardViewModel.getAverageKilometers().getValue().toString() + "Km");
-                averageMinutes.setText("Avg time: " + dashboardViewModel.getAvgTimeString());
+                prevMinutes.setText(dashboardViewModel.getLastWeekTimeString());
+                minutes.setText(dashboardViewModel.getTimeString());
+                kilometers.setText(dashboardViewModel.getKilometers().getValue());
+                prevKilometers.setText(dashboardViewModel.getPreviousKilometers().getValue());
+                averageKilometers.setText(dashboardViewModel.getAverageKilometers().getValue());
+                averageMinutes.setText(dashboardViewModel.getAvgTimeString());
 
             }
         });
+
+        DocumentReference documentReference= firestore.collection("users").document(userId);
+        documentReference.addSnapshotListener(new EventListener<DocumentSnapshot>() {
+            @Override
+            public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
+                if (value!=null) {
+                    dashboardViewModel.loadModel(value);
+                    prevMinutes.setText(dashboardViewModel.getLastWeekTimeString());
+                    minutes.setText(dashboardViewModel.getTimeString());
+                    kilometers.setText(dashboardViewModel.getKilometers().getValue());
+                    prevKilometers.setText(dashboardViewModel.getPreviousKilometers().getValue());
+                    averageKilometers.setText(dashboardViewModel.getAverageKilometers().getValue());
+                    averageMinutes.setText(dashboardViewModel.getAvgTimeString());
+                }
+            }
+        });
+
+
 
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_item,dashboardViewModel.getWorkoutTypes());
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -98,9 +136,8 @@ public class dashboardFragment extends Fragment {
                     editReps.getText().toString());
             editReps.setText("");
             editMinutes.setText("");
-            minutes.setText("This week "+dashboardViewModel.getTimeString());
-            Toast toast = Toast.makeText(getActivity(),"Workout added", Toast.LENGTH_LONG);
-            toast.show();
+            minutes.setText(dashboardViewModel.getTimeString());
+            Toast.makeText(getActivity(),"Workout added", Toast.LENGTH_LONG).show();
         });
     }
 

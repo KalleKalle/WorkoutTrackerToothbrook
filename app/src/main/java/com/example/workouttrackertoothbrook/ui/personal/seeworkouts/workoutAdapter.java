@@ -36,6 +36,7 @@ public class workoutAdapter extends RecyclerView.Adapter<workoutAdapter.ViewHold
         holder.duration.setText(workouts.get(position).getDuration()+"Min");
         holder.calories.setText(workouts.get(position).getCalories()+"kcal");
         holder.date.setText(workouts.get(position).getTime());
+        holder.reps.setText(workouts.get(position).getReps()+" Reps");
     }
 
     @Override
@@ -48,8 +49,10 @@ public class workoutAdapter extends RecyclerView.Adapter<workoutAdapter.ViewHold
         TextView duration;
         TextView calories;
         TextView date;
+        TextView reps;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
+            reps= itemView.findViewById(R.id.repsWorkout);
             date= itemView.findViewById(R.id.dateOfWorkout);
             typeOfWorkout = itemView.findViewById(R.id.typeOfWorkout);
             duration= itemView.findViewById(R.id.durationOfWorkout);

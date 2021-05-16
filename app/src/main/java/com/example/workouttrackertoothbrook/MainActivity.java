@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.example.workouttrackertoothbrook.Data.Network;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.android.gms.location.LocationServices;
@@ -35,10 +36,12 @@ public class MainActivity extends AppCompatActivity {
 
     private boolean LocationPermission = false;
     private static final String TAG = "MainActivity";
+    private Network network;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        network=new Network();
         setContentView(R.layout.activity_main);
         BottomNavigationView navView = findViewById(R.id.nav_view);
         // Passing each menu ID as a set of Ids because each
@@ -46,6 +49,8 @@ public class MainActivity extends AppCompatActivity {
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.navigation_social, R.id.navigation_dashboard, R.id.navigation_tracker,R.id.navigation_personal)
                 .build();
+
+
 
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
@@ -60,6 +65,13 @@ public class MainActivity extends AppCompatActivity {
                 getLocationPermission();
             }
         }
+    }
+
+    @Override
+    protected void onStop() {
+        network.saveAll();
+        super.onStop();
+
     }
 
     private boolean checkMapServices(){

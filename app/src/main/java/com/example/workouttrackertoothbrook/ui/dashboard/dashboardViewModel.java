@@ -2,8 +2,13 @@ package com.example.workouttrackertoothbrook.ui.dashboard;
 
 import com.example.workouttrackertoothbrook.Data.Workout;
 import com.example.workouttrackertoothbrook.Data.workoutModel;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.gson.Gson;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 
 import androidx.lifecycle.LifecycleObserver;
@@ -25,21 +30,7 @@ public class dashboardViewModel extends ViewModel implements LifecycleObserver {
         mText.setValue("This is dashboard fragment");
         model = new MutableLiveData<>();
         model.setValue(workoutModel.getInstance());
-        model.getValue().setPreviousWeekMinutes(120);
-        model.getValue().setWorkoutMinutes(300);
-        model.getValue().getPreviousWeekWorkouts().add(new Workout(model.getValue().getWorkoutTypes().get(4),50, new Date(),50,2000));
-        model.getValue().getWorkouts().add(new Workout(model.getValue().getWorkoutTypes().get(2),20, new Date(),10,3581));
-        model.getValue().getWorkouts().add(new Workout(model.getValue().getWorkoutTypes().get(0),30, new Date(),20,123651));
-        model.getValue().getWorkouts().add(new Workout(model.getValue().getWorkoutTypes().get(1),40, new Date(),35,1415));
-        model.getValue().getWorkouts().add(new Workout(model.getValue().getWorkoutTypes().get(3),80, new Date(),1,145));
-        model.getValue().getWorkouts().add(new Workout(model.getValue().getWorkoutTypes().get(4),20, new Date(),10,1111));
-        model.getValue().getWorkouts().add(new Workout(model.getValue().getWorkoutTypes().get(5),900, new Date(),500,1235));
-        model.getValue().getWorkouts().add(new Workout(model.getValue().getWorkoutTypes().get(6),20, new Date(),10,7786));
-        model.getValue().getWorkouts().add(new Workout(model.getValue().getWorkoutTypes().get(7),20, new Date(),10,10000));
-        model.getValue().setKilometers(2.5);
-        model.getValue().setPrevKilometers(0);
-        model.getValue().setAverageMinutes(200);
-        model.getValue().setAverageKilometers(2);
+
 
     }
 
@@ -47,17 +38,22 @@ public class dashboardViewModel extends ViewModel implements LifecycleObserver {
         return mText;
     }
 
-    public LiveData<Double> getPreviousKilometers() {
+    public LiveData<String> getPreviousKilometers() {
 
-        MutableLiveData<Double> d = new MutableLiveData<>();
-        d.setValue(model.getValue().getPrevKilometers());
+        MutableLiveData<String> d = new MutableLiveData<>();
+        double km= model.getValue().getPrevKilometers();
+        if (km==-1){
+            d.setValue("Last week: " + "0 Km");
+            return d;
+        }
+        d.setValue("Last week: " + km+" Km");
         return d;
 
     }
 
-    public LiveData<Double> getKilometers() {
-        MutableLiveData<Double> d = new MutableLiveData<>();
-        d.setValue(model.getValue().getKilometers());
+    public LiveData<String> getKilometers() {
+        MutableLiveData<String> d = new MutableLiveData<>();
+        d.setValue("This week "+model.getValue().getKilometers()+" Km");
         return d;
     }
 
@@ -79,9 +75,9 @@ public class dashboardViewModel extends ViewModel implements LifecycleObserver {
         return d;
     }
 
-    public LiveData<Double> getAverageKilometers(){
-        MutableLiveData<Double> d = new MutableLiveData<>();
-        d.setValue(model.getValue().getAverageKilometers());
+    public LiveData<String> getAverageKilometers(){
+        MutableLiveData<String> d = new MutableLiveData<>();
+        d.setValue("Avg Distance: " + model.getValue().getAverageKilometers()+" Km");
         return d;
     }
 
@@ -94,9 +90,9 @@ public class dashboardViewModel extends ViewModel implements LifecycleObserver {
             time=time-60;
         }
         if(hour==0){
-            return time+"Min";
+            return "Last week: " +  time+" Min";
         }
-        return hour+"H "+time+"Min";
+        return "Last week: " +  hour+"H "+time+" Min";
     }
 
     public String getTimeString() {
@@ -107,9 +103,9 @@ public class dashboardViewModel extends ViewModel implements LifecycleObserver {
             time=time-60;
         }
         if(hour==0){
-            return time+"Min";
+            return "This week "+ time+" Min";
         }
-        return hour+"H "+time+"Min";
+        return "This week "+ hour+"H "+time+" Min";
     }
 
     public String getAvgTimeString() {
@@ -120,9 +116,9 @@ public class dashboardViewModel extends ViewModel implements LifecycleObserver {
             time=time-60;
         }
         if(hour==0){
-            return time+"Min";
+            return "Avg time: " +  time+" Min";
         }
-        return hour+"H "+time+"Min";
+        return "Avg time: " +  hour+"H "+time+" Min";
     }
 
     public ArrayList<String> getWorkoutTypes(){
@@ -136,6 +132,7 @@ public class dashboardViewModel extends ViewModel implements LifecycleObserver {
             if (m > 0 && r > 0) {
                 addWorkoutMinutes(m);
                 addWorkoutReps(workoutType, r,m);
+
             }
         }
 
@@ -149,5 +146,67 @@ public class dashboardViewModel extends ViewModel implements LifecycleObserver {
     private void addWorkoutMinutes(int minutes) {
         int wm=model.getValue().getWorkoutMinutes()+minutes;
         model.getValue().setWorkoutMinutes(wm);
+    }
+
+    public void loadModel(DocumentSnapshot value) {
+        Gson gson= new Gson();
+        String data= gson.toJson(value.get("userData"));
+        workoutModel fromDatabase = gson.fromJson(data,workoutModel.class);
+        model.getValue().getSelf().setId(fromDatabase.getSelf().getId());
+        model.getValue().getSelf().setName(fromDatabase.getSelf().getName());
+        model.getValue().getSelf().setHeight(fromDatabase.getSelf().getHeight());
+        model.getValue().getSelf().setWeight(fromDatabase.getSelf().getWeight());
+        model.getValue().getSelf().setEmail(fromDatabase.getSelf().getEmail());
+        model.getValue().setWorkouts(fromDatabase.getWorkouts());
+        model.getValue().setPreviousWeekWorkouts(fromDatabase.getPreviousWeekWorkouts());
+        model.getValue().setWorkoutMinutes(fromDatabase.getWorkoutMinutes());
+        model.getValue().setPreviousWeekMinutes(fromDatabase.getPreviousWeekMinutes());
+        model.getValue().setAverageMinutes(fromDatabase.getAverageMinutes());
+        model.getValue().setAverageKilometers(fromDatabase.getAverageKilometers());
+        model.getValue().setKilometers(fromDatabase.getKilometers());
+        model.getValue().setPrevKilometers(fromDatabase.getPrevKilometers());
+        model.getValue().setTweight(fromDatabase.getTweight());
+        model.getValue().setTkcal(fromDatabase.getTkcal());
+        model.getValue().setTkm(fromDatabase.getTkm());
+        model.getValue().setFriends(fromDatabase.getFriends());
+        model.getValue().setWorkoutTypes(fromDatabase.getWorkoutTypes());
+
+        try {
+            Calendar c=Calendar.getInstance();
+            Workout workout= model.getValue().getWorkouts().get(model.getValue().getWorkouts().size()-1);
+            Date toDate = new SimpleDateFormat().parse(workout.getTime());
+            c.setTime(toDate);
+            c.add(Calendar.DATE,7);
+            if(c.getTime().compareTo(toDate)<0){
+               endOfWeek();
+            }
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+
+    }
+
+    void endOfWeek(){
+        model.getValue().setAverageMinutes(calcAverageMin());
+        model.getValue().setAverageKilometers(calcAverageKm());
+        model.getValue().setPreviousWeekWorkouts(model.getValue().getWorkouts());
+        model.getValue().setPrevKilometers(model.getValue().getKilometers());
+        model.getValue().setPreviousWeekMinutes(model.getValue().getWorkoutMinutes());
+        model.getValue().setKilometers(0);
+        model.getValue().setWorkoutMinutes(0);
+        model.getValue().setWorkouts(new ArrayList<>());
+    }
+    int calcAverageMin(){
+        int min = model.getValue().getWorkoutMinutes();
+        int avgMin= model.getValue().getAverageMinutes();
+        return (min+avgMin/2);
+    }
+
+    double calcAverageKm(){
+        double km= model.getValue().getKilometers();
+        double avgKm= model.getValue().getAverageKilometers();
+        return (km+avgKm/2);
+
     }
 }

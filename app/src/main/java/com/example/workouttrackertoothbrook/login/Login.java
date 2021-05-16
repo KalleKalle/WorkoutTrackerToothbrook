@@ -36,6 +36,11 @@ public class Login extends AppCompatActivity {
         signin= findViewById(R.id.signinButton);
         fAuth= FirebaseAuth.getInstance();
 
+        if(fAuth.getCurrentUser()!=null){
+            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+            finish();
+        }
+
 
         register.setOnClickListener(v -> {
             startActivity(new Intent(getApplicationContext(), Register.class));

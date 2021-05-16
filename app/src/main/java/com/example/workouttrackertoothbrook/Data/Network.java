@@ -1,9 +1,29 @@
 package com.example.workouttrackertoothbrook.Data;
 
+import android.util.Log;
+
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+import androidx.annotation.NonNull;
 
 public class Network {
+    FirebaseAuth firebaseAuth;
+    FirebaseFirestore firestore;
+
+    public Network() {
+        this.firebaseAuth = FirebaseAuth.getInstance();
+        this.firestore= FirebaseFirestore.getInstance();
+    }
+
     public User searchForFriend(String email) {
         return new User("test@friend.cl","John samson",178,78.7);
     }
@@ -37,13 +57,12 @@ public class Network {
 
     public List<Group> getGroupsThatUserIsMemberOf(){
         ArrayList<Group> groups= new ArrayList<>();
-        groups.add(searchforGroup("test"));
-        groups.add(searchforGroup("test2"));
-        groups.add(searchforGroup("test3"));
+
         return groups;
     }
 
     public void CreateGroup(String groupName, User self) {
+
     }
 
     public Competition findCompetition(String groupName) {
@@ -55,5 +74,26 @@ public class Network {
 
     public void createCompetition(Competition competition, String groupName) {
 
+    }
+
+    public void LogOut() {
+        firebaseAuth.signOut();
+    }
+
+    public void saveAll() {
+        DocumentReference documentReference = firestore.collection("users").document(firebaseAuth.getCurrentUser().getUid());
+        Map<String,Object> change= new HashMap<>();
+        change.put("userData",workoutModel.getInstance());
+        documentReference.update(change).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void aVoid) {
+                Log.d("database","save Successful");
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Log.d("database",e.toString());
+            }
+        });
     }
 }

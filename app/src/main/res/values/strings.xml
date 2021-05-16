@@ -70,4 +70,6 @@
     <string name="login">Login</string>
     <string name="don_t_have_a_user_register_here">Don\'t Have a User? Register here</string>
     <string name="logout">Logout</string>
+    <string name="height_register">Height</string>
+    <string name="weight_register">Weight</string>
 </resources>

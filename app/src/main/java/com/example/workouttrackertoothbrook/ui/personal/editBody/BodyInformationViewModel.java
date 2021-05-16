@@ -11,7 +11,8 @@ public class BodyInformationViewModel extends ViewModel {
 
     public BodyInformationViewModel() {
         model= new MutableLiveData<>();
-        model.setValue(workoutModel.getInstance());
+        model.setValue(
+                workoutModel.getInstance());
     }
 
     public String getName() {
@@ -26,11 +27,12 @@ public class BodyInformationViewModel extends ViewModel {
         return Double.toString(model.getValue().getSelf().getWeight());
     }
 
-    public void saveInformation(String name, String height, String weight,String email) {
+    public void saveInformation(String name, String height, String weight) {
         model.getValue().getSelf().setName(name);
         model.getValue().getSelf().setHeight(Integer.parseInt(height));
         model.getValue().getSelf().setWeight(Double.parseDouble(weight));
-        model.getValue().getSelf().setEmail(email);
+
+
     }
 
     public LiveData<workoutModel> getModel() {

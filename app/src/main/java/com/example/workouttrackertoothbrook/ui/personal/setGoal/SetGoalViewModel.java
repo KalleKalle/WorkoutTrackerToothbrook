@@ -13,49 +13,49 @@ public class SetGoalViewModel extends ViewModel {
 
     public void saveGoals(String Km, String Kcal, String weight) {
         if(!Km.equals("")) {
-            model.setTKm(Double.parseDouble(Km));
+            model.setTkm(Double.parseDouble(Km));
         }
         else {
-            model.setTKm(-1);
+            model.setTkm(-1);
         }
         if (!Kcal.equals("")){
-            model.setTKcal(Integer.parseInt(Kcal));
+            model.setTkcal(Integer.parseInt(Kcal));
         }
         else {
-            model.setTKcal(-1);
+            model.setTkcal(-1);
         }
 
         if (!weight.equals("")) {
-            model.setTWeight(Double.parseDouble(weight));
+            model.setTweight(Double.parseDouble(weight));
         }
         else {
-            model.setTWeight(-1);
+            model.setTweight(-1);
         }
 
     }
 
     public String getTWeight() {
 
-        if(model.getTWeight()>0)
+        if(model.getTweight()>0)
         {
-            return Double.toString(model.getTWeight());
+            return Double.toString(model.getTweight());
         }
         return "";
 
     }
 
     public String getTKcal() {
-        if(model.getTKcal()>0)
+        if(model.getTkcal()>0)
         {
-            return Integer.toString(model.getTKcal());
+            return Integer.toString(model.getTkcal());
         }
         return "";
     }
 
     public String getTKm() {
-        if(model.getTKm()>0)
+        if(model.getTkm()>0)
         {
-            return Double.toString(model.getTKm());
+            return Double.toString(model.getTkm());
         }
         return "";
 

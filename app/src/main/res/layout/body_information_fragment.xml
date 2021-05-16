@@ -68,20 +68,7 @@
                 android:inputType="numberDecimal"
                 />
 
-            <TextView
-                android:text="@string/email"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="20sp"
-                android:gravity="center"
-                />
 
-            <EditText
-                android:id="@+id/emailOfUser"
-                android:layout_height="wrap_content"
-                android:inputType="textEmailAddress"
-                android:layout_width="match_parent"
-                />
 
             <Button
                 android:id="@+id/saveEditInformation"

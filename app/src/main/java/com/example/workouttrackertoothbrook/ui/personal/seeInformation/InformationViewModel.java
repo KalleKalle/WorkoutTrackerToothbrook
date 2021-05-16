@@ -2,6 +2,8 @@ package com.example.workouttrackertoothbrook.ui.personal.seeInformation;
 
 import com.example.workouttrackertoothbrook.Data.workoutModel;
 
+import java.text.DecimalFormat;
+
 import androidx.lifecycle.ViewModel;
 
 public class InformationViewModel extends ViewModel {
@@ -27,7 +29,7 @@ public class InformationViewModel extends ViewModel {
     }
 
     public String getWeightGoal() {
-        double w=model.getTWeight();
+        double w=model.getTweight();
         if (w!=0){
             return Double.toString(w);
         }
@@ -37,13 +39,15 @@ public class InformationViewModel extends ViewModel {
     public String getBMI() {
         double heightInM = ((double) model.getSelf().getHeight()/100);
         double bmi= (model.getSelf().getWeight()/(Math.pow((heightInM),2)));
-        return Double.toString(bmi);
+        DecimalFormat df = new DecimalFormat("#.##");
+        return df.format(bmi);
     }
 
     public String getKCalBurnedWeek() {
         //Total calories burned = Duration (in minutes)*(MET*3.5*weight in kg)/200
         double TCB = (model.getWorkoutMinutes()*(3*3.5*model.getSelf().getWeight())/200);
-        return Double.toString(TCB);
+        DecimalFormat df = new DecimalFormat("#.##");
+        return df.format(TCB);
     }
 
     private int getKCalBurnedWeekInt() {
@@ -55,7 +59,7 @@ public class InformationViewModel extends ViewModel {
 
 
     public String getKCalGoal() {
-        int kCal=model.getTKcal();
+        int kCal=model.getTkcal();
         if (kCal!=0){
             return (Integer.toString(kCal-getKCalBurnedWeekInt())+"kcal");
         }
@@ -63,7 +67,7 @@ public class InformationViewModel extends ViewModel {
     }
 
     public String getKmGoal() {
-        double Km=model.getTKm();
+        double Km=model.getTkm();
         if (Km!=0){
             return (Double.toString(Km-model.getKilometers())+"Km");
         }

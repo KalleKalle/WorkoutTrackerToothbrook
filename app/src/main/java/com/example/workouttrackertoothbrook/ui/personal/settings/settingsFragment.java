@@ -24,6 +24,8 @@ public class settingsFragment extends Fragment {
     private SettingsViewModel mViewModel;
     private EditText workoutType;
     private Button addWorkouttype;
+    private EditText email;
+    private Button saveEmail;
     private Button logout;
 
     public static settingsFragment newInstance() {
@@ -36,6 +38,8 @@ public class settingsFragment extends Fragment {
         View root= inflater.inflate(R.layout.settings_fragment, container, false);
         workoutType= root.findViewById(R.id.workoutType);
         addWorkouttype= root.findViewById(R.id.addWorkoutType);
+        email= root.findViewById(R.id.emailOfUser);
+        saveEmail = root.findViewById(R.id.saveEmail);
         logout= root.findViewById(R.id.logout);
         return root;
     }
@@ -44,12 +48,17 @@ public class settingsFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         mViewModel = new ViewModelProvider(this).get(SettingsViewModel.class);
+        email.setText(mViewModel.getEmail());
         addWorkouttype.setOnClickListener(v -> mViewModel.addWorkoutType(workoutType.getText().toString()));
         logout.setOnClickListener(v -> {
             mViewModel.logoutUser();
             startActivity(new Intent(getActivity().getApplicationContext(), Login.class));
             getActivity().finish();
         });
+
+        saveEmail.setOnClickListener(v ->mViewModel.SaveEmail(email.getText().toString(),getActivity()) );
+
+
 
 
     }

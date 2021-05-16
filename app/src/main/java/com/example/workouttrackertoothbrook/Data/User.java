@@ -2,20 +2,25 @@ package com.example.workouttrackertoothbrook.Data;
 
 public class User {
     private String id;
-    private String Email;
-    private String Name;
-    private int Height;
-    private double Weight;
+    private String email;
+    private String name;
+    private int height;
+    private double weight;
     private int workoutMinutes;
     double kilometers;
 
-    public User(String email, String name,int height,double weight) {
-        Email = email;
-        Name = name;
-        Height=height;
-        Weight=weight;
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public User(String email, String name, int height, double weight) {
+        this.email = email;
+        this.name = name;
+        this.height =height;
+        this.weight =weight;
 
     }
+    public User(){     }
 
     public int getWorkoutMinutes() {
         return workoutMinutes;
@@ -39,35 +44,35 @@ public class User {
 
 
     public String getEmail() {
-        return Email;
+        return email;
     }
 
     public void setEmail(String email) {
-        Email = email;
+        this.email = email;
     }
 
     public String getName() {
-        return Name;
+        return name;
     }
 
     public int getHeight() {
-        return Height;
+        return height;
     }
 
     public void setHeight(int height) {
-        Height = height;
+        this.height = height;
     }
 
     public double getWeight() {
-        return Weight;
+        return weight;
     }
 
     public void setWeight(double weight) {
-        Weight = weight;
+        this.weight = weight;
     }
 
     public void setName(String name) {
-        Name = name;
+        this.name = name;
     }
 
 

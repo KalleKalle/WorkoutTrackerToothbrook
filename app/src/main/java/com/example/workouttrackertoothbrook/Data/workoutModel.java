@@ -1,7 +1,6 @@
 package com.example.workouttrackertoothbrook.Data;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class workoutModel {
 
@@ -16,23 +15,14 @@ public class workoutModel {
     double averageKilometers;
     double kilometers;
     double prevKilometers;
-    String username;
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    double TWeight;
-    int TKcal;
-    double TKm;
-
+    double tweight;
+    int tkcal;
+    double tkm;
     User self;
     ArrayList<User> friends;
     ArrayList<String> workoutTypes;
+
+
 
     public static workoutModel getInstance()
     {
@@ -63,45 +53,51 @@ public class workoutModel {
         friends.add(user);
     }
 
-    public double getTWeight() {
-        return TWeight;
+    public double getTweight() {
+        return tweight;
     }
 
-    public void setTWeight(double TWeight) {
-        this.TWeight = TWeight;
+    public void setTweight(double tweight) {
+        this.tweight = tweight;
     }
 
-    public int getTKcal() {
-        return TKcal;
+    public int getTkcal() {
+        return tkcal;
     }
 
-    public void setTKcal(int TKcal) {
-        this.TKcal = TKcal;
+    public void setTkcal(int tkcal) {
+        this.tkcal = tkcal;
     }
 
-    public double getTKm() {
-        return TKm;
+    public double getTkm() {
+        return tkm;
     }
 
-    public void setTKm(double TKm) {
-        this.TKm = TKm;
+    public void setTkm(double tkm) {
+        this.tkm = tkm;
     }
 
     private workoutModel() {
-        workoutMinutes=-1;
+        /*
+
         TWeight= 85;
         TKcal=88000;
         TKm=20;
-        previousWeekMinutes=-1;
-        averageKilometers=-1;
-        averageMinutes=-1;
-        kilometers=-1;
+
+
+         */
+
+        workoutMinutes=0;
+        previousWeekMinutes=0;
+        averageKilometers=0;
+        averageMinutes=0;
+        kilometers=0;
         WorkoutTypesCreator();
-        prevKilometers=-1;
         workouts= new ArrayList<>();
         previousWeekWorkouts = new ArrayList<>();
         friends=new ArrayList<>();
-        self = new User("test@mail.com","John",180,88.4);
+        self = new User();
+
     }
 
     private void WorkoutTypesCreator() {
@@ -117,6 +113,7 @@ public class workoutModel {
         workoutTypes.add("Push up");
         workoutTypes.add("Squat");
         workoutTypes.add("Superman");
+        workoutTypes.add("Walk/Run");
     }
 
     public ArrayList<Workout> getWorkouts() {
@@ -188,6 +185,10 @@ public class workoutModel {
 
     public ArrayList<String> getWorkoutTypes() {
         return workoutTypes;
+    }
+
+    public void setWorkoutTypes(ArrayList<String> workoutTypes) {
+        this.workoutTypes = workoutTypes;
     }
 
     public void addWorkoutType(String workouts) {
