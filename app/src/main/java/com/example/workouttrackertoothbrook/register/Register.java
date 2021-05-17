@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.workouttrackertoothbrook.Data.Group;
 import com.example.workouttrackertoothbrook.Data.workoutModel;
 import com.example.workouttrackertoothbrook.MainActivity;
 import com.example.workouttrackertoothbrook.R;
@@ -22,6 +23,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -102,6 +104,8 @@ public class Register extends AppCompatActivity {
                         model.getSelf().setName(name);
                         model.getSelf().setId(userId);
                         user.put("userData",model);
+                        ArrayList<Group> groups= new ArrayList<>();
+                        user.put("groups",groups);
                         documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
                             public void onSuccess(Void aVoid) {

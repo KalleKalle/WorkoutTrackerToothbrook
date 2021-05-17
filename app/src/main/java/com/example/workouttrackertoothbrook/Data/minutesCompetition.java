@@ -1,13 +1,10 @@
 package com.example.workouttrackertoothbrook.Data;
 
-import android.os.Build;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
-
-import androidx.annotation.RequiresApi;
 
 public class minutesCompetition extends Competition {
     public minutesCompetition(String cat) {
@@ -16,19 +13,19 @@ public class minutesCompetition extends Competition {
 
 
     @Override
-    public List<User> getRanking(List<User> contestants) {
-        List<User> list = new ArrayList<>(contestants);
+    public List<HashMap> getRanking(List<HashMap> contestants) {
+        List<HashMap> list = new ArrayList<>(contestants);
         Collections.sort(list,new sortByMinutes());
         Collections.reverse(list);
         return list;
 
     }
 
-    class sortByMinutes implements Comparator<User>{
+    class sortByMinutes implements Comparator<HashMap>{
 
         @Override
-        public int compare(User o1, User o2) {
-            return o1.getWorkoutMinutes() - o2.getWorkoutMinutes();
+        public int compare(HashMap o1, HashMap o2) {
+            return (int) o1.get("workoutMinutes") - (int) o2.get("workoutMinutes");
         }
     }
 

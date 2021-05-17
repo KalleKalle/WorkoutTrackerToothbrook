@@ -2,11 +2,15 @@ package com.example.workouttrackertoothbrook.Data;
 
 import android.util.Log;
 
+import com.example.workouttrackertoothbrook.ui.social.socialViewModel;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -14,10 +18,14 @@ import java.util.List;
 import java.util.Map;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 public class Network {
     FirebaseAuth firebaseAuth;
     FirebaseFirestore firestore;
+    Competition competition= null;
+    ArrayList<Group> groupArrayList = null;
+    Group group= null;
 
     public Network() {
         this.firebaseAuth = FirebaseAuth.getInstance();
@@ -28,52 +36,110 @@ public class Network {
         return new User("test@friend.cl","John samson",178,78.7);
     }
 
-    public Group searchforGroup(String groupName) {
-        ArrayList<User> members= new ArrayList<>();
-        User u= new User("test@friend.cl","Timmy Turner",178,78.7);
-        u.setKilometers(10);
-        u.setWorkoutMinutes(100);
-        User u1= new User("test@friend.cl","Jon jamson",178,78.7);
-        u1.setKilometers(40);
-        u1.setWorkoutMinutes(250);
-        User u2= new User("test@friend.cl","John Connor",178,78.7);
-        u2.setKilometers(0);
-        u2.setWorkoutMinutes(800);
-        User u3= new User("test@friend.cl","Samson the fake",178,78.7);
-        u3.setKilometers(100);
-        u3.setWorkoutMinutes(500);
+    public Group searchforGroup(String groupName, socialViewModel socialViewModel) {
+        DocumentReference documentReference= firestore.collection("groups").document(groupName);
+        documentReference.addSnapshotListener(new EventListener<DocumentSnapshot>() {
+            @Override
+            public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
+                ArrayList<User> members= (ArrayList<User>) value.get("members");
+                String name= value.getString("name");
+                group = new Group(name, members);
+                //socialViewModel.groupReady(group);
+            }
+        });
 
-        members.add(u);
-        members.add(u1);
-        members.add(u2);
-        members.add(u3);
-
-        return new Group(groupName,members);
+        return group;
     }
 
     public void addGroup(Group group, User self) {
+        DocumentReference documentReference= firestore.collection("users").document(self.getId());
+        Map<String,Object> groupsMap= new HashMap<>();
+        List<Group> groups= getGroupsThatUserIsMemberOf(self);
+        groups.add(group);
+        groupsMap.put("groups",groups);
+        documentReference.update(groupsMap).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void aVoid) {
+                Log.d("database","add group Successful");
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Log.d("database",e.toString());
+            }
+        });
+
 
     }
 
-    public List<Group> getGroupsThatUserIsMemberOf(){
-        ArrayList<Group> groups= new ArrayList<>();
+    public List<Group> getGroupsThatUserIsMemberOf(User self){
 
-        return groups;
+        DocumentReference documentReference= firestore.collection("users").document(self.getId());
+        documentReference.addSnapshotListener(new EventListener<DocumentSnapshot>() {
+            @Override
+            public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
+                groupArrayList = (ArrayList<Group>) value.get("groups");
+            }
+        });
+
+        return groupArrayList;
     }
 
     public void CreateGroup(String groupName, User self) {
+        DocumentReference documentReference= firestore.collection("groups").document(groupName);
+        Map<String,Object> groupMap= new HashMap<>();
+        ArrayList<User> members= new ArrayList<>();
+        members.add(self);
+        Group group = new Group(groupName,members);
+        groupMap.put("name",groupName);
+        groupMap.put("members",members);
+
+        documentReference.set(groupMap).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void aVoid) {
+                Log.d("database","group is created successfully");
+
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Log.d("database",e.toString());
+            }
+        });
+
+
 
     }
 
     public Competition findCompetition(String groupName) {
-        return null;
+        DocumentReference documentReference= firestore.collection("groups").document(groupName);
+
+        documentReference.addSnapshotListener(new EventListener<DocumentSnapshot>() {
+            @Override
+            public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
+                competition= (Competition) value.get("Competition");
+            }
+        });
+        return competition;
     }
 
-    public void createGroup(String type, String groupName) {
-    }
 
     public void createCompetition(Competition competition, String groupName) {
+        DocumentReference documentReference= firestore.collection("groups").document(groupName);
+        Map<String,Object> competitionMap= new HashMap<>();
+        competitionMap.put("Competition",competition);
 
+        documentReference.set(competitionMap).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void aVoid) {
+                Log.d("database","competition is created successfully");
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Log.d("database",e.toString());
+            }
+        });
     }
 
     public void LogOut() {

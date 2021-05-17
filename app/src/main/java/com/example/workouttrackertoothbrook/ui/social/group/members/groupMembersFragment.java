@@ -14,7 +14,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.workouttrackertoothbrook.Data.User;
 import com.example.workouttrackertoothbrook.R;
+
+import java.util.ArrayList;
+import java.util.HashMap;
 
 public class groupMembersFragment extends Fragment {
 
@@ -42,8 +46,11 @@ public class groupMembersFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
         mViewModel = new ViewModelProvider(this).get(GroupMembersViewModel.class);
         String name = getArguments().getString("groupName");
-        membersAdapter adapter= new membersAdapter(mViewModel.getMembersOfGroup(name));
+        mViewModel.getMembersOfGroup(name,this);
+    }
 
+    public void groupMembersReady(ArrayList<HashMap> membersList) {
+        membersAdapter adapter= new membersAdapter(membersList);
         members.setAdapter(adapter);
     }
 

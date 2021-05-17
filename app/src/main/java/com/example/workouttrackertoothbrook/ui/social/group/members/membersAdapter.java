@@ -11,14 +11,15 @@ import com.example.workouttrackertoothbrook.R;
 import com.example.workouttrackertoothbrook.ui.personal.seeworkouts.workoutAdapter;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class membersAdapter extends RecyclerView.Adapter<membersAdapter.ViewHolder> {
-    private ArrayList<User> members;
-    public membersAdapter(ArrayList<User> Members) {
+    private ArrayList<HashMap> members;
+    public membersAdapter(ArrayList<HashMap> Members) {
         members=Members;
     }
 
@@ -32,7 +33,7 @@ public class membersAdapter extends RecyclerView.Adapter<membersAdapter.ViewHold
 
     @Override
     public void onBindViewHolder(@NonNull membersAdapter.ViewHolder holder, int position) {
-        holder.name.setText(members.get(position).getName());
+        holder.name.setText(members.get(position).get("name").toString());
     }
 
     @Override

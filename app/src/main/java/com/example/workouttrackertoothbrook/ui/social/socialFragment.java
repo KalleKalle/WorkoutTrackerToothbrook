@@ -24,6 +24,9 @@ import com.example.workouttrackertoothbrook.R;
 import com.example.workouttrackertoothbrook.ui.social.group.groupAdapter;
 import com.example.workouttrackertoothbrook.ui.social.group.groupFragment;
 
+import java.util.HashMap;
+import java.util.List;
+
 public class socialFragment extends Fragment {
 
     private socialViewModel viewModel;
@@ -57,17 +60,12 @@ public class socialFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
         viewModel = new ViewModelProvider(this).get(socialViewModel.class);
 
-        groupAdapter groupAdapter= new groupAdapter(viewModel.getGroups(),getActivity());
 
-        groupsView.setAdapter(groupAdapter);
+        viewModel.getGroups(this);
 
         search.setOnClickListener(v -> {
-            group= viewModel.searchForGroup(searchbar.getText().toString());
-            if(group!=null){
-                addGroup.setVisibility(View.VISIBLE);
-                groupNameTextView.setVisibility(View.VISIBLE);
-                groupNameTextView.setText("FOUND: "+group.getName());
-            }
+            viewModel.searchForGroup(searchbar.getText().toString(),this);
+
         });
 
         addGroup.setOnClickListener(v -> viewModel.addGroup(group));
@@ -83,7 +81,7 @@ public class socialFragment extends Fragment {
             createGroupDialog.setPositiveButton("Create", new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int positiveButton) {
                     String groupName = groupNameEditText.getText().toString();
-                    viewModel.createGroup(groupName);
+                    viewModel.createGroup(groupName,socialFragment.this);
                     FragmentTransaction trans = getActivity().getSupportFragmentManager().beginTransaction();
                     groupFragment groupFragment = new groupFragment();
                     Bundle bundle = new Bundle();
@@ -103,5 +101,23 @@ public class socialFragment extends Fragment {
         });
 
 
+    }
+
+    public void groupsUserMemberOfReady(List<HashMap> groups) {
+        groupAdapter groupAdapter= new groupAdapter(groups,getActivity());
+
+        groupsView.setAdapter(groupAdapter);
+    }
+
+    public void groupReady(Group Group) {
+        this.group= Group;
+        if(group!=null){
+            addGroup.setVisibility(View.VISIBLE);
+            groupNameTextView.setVisibility(View.VISIBLE);
+            groupNameTextView.setText("FOUND: "+group.getName());
+        }
+        else {
+            groupNameTextView.setText("No group found");
+        }
     }
 }

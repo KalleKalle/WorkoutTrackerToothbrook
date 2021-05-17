@@ -1,5 +1,6 @@
 package com.example.workouttrackertoothbrook.ui.dashboard;
 
+import com.example.workouttrackertoothbrook.Data.Network;
 import com.example.workouttrackertoothbrook.Data.Workout;
 import com.example.workouttrackertoothbrook.Data.workoutModel;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -152,37 +153,44 @@ public class dashboardViewModel extends ViewModel implements LifecycleObserver {
         Gson gson= new Gson();
         String data= gson.toJson(value.get("userData"));
         workoutModel fromDatabase = gson.fromJson(data,workoutModel.class);
-        model.getValue().getSelf().setId(fromDatabase.getSelf().getId());
-        model.getValue().getSelf().setName(fromDatabase.getSelf().getName());
-        model.getValue().getSelf().setHeight(fromDatabase.getSelf().getHeight());
-        model.getValue().getSelf().setWeight(fromDatabase.getSelf().getWeight());
-        model.getValue().getSelf().setEmail(fromDatabase.getSelf().getEmail());
-        model.getValue().setWorkouts(fromDatabase.getWorkouts());
-        model.getValue().setPreviousWeekWorkouts(fromDatabase.getPreviousWeekWorkouts());
-        model.getValue().setWorkoutMinutes(fromDatabase.getWorkoutMinutes());
-        model.getValue().setPreviousWeekMinutes(fromDatabase.getPreviousWeekMinutes());
-        model.getValue().setAverageMinutes(fromDatabase.getAverageMinutes());
-        model.getValue().setAverageKilometers(fromDatabase.getAverageKilometers());
-        model.getValue().setKilometers(fromDatabase.getKilometers());
-        model.getValue().setPrevKilometers(fromDatabase.getPrevKilometers());
-        model.getValue().setTweight(fromDatabase.getTweight());
-        model.getValue().setTkcal(fromDatabase.getTkcal());
-        model.getValue().setTkm(fromDatabase.getTkm());
-        model.getValue().setFriends(fromDatabase.getFriends());
-        model.getValue().setWorkoutTypes(fromDatabase.getWorkoutTypes());
-
-        try {
-            Calendar c=Calendar.getInstance();
-            Workout workout= model.getValue().getWorkouts().get(model.getValue().getWorkouts().size()-1);
-            Date toDate = new SimpleDateFormat().parse(workout.getTime());
-            c.setTime(toDate);
-            c.add(Calendar.DATE,7);
-            if(c.getTime().compareTo(toDate)<0){
-               endOfWeek();
-            }
-        } catch (ParseException e) {
-            e.printStackTrace();
+        if (model.getValue().getSelf()==null){
+            new Network().LogOut();
         }
+        else {
+            model.getValue().getSelf().setId(fromDatabase.getSelf().getId());
+            model.getValue().getSelf().setName(fromDatabase.getSelf().getName());
+            model.getValue().getSelf().setHeight(fromDatabase.getSelf().getHeight());
+            model.getValue().getSelf().setWeight(fromDatabase.getSelf().getWeight());
+            model.getValue().getSelf().setEmail(fromDatabase.getSelf().getEmail());
+            model.getValue().setWorkouts(fromDatabase.getWorkouts());
+            model.getValue().setPreviousWeekWorkouts(fromDatabase.getPreviousWeekWorkouts());
+            model.getValue().setWorkoutMinutes(fromDatabase.getWorkoutMinutes());
+            model.getValue().setPreviousWeekMinutes(fromDatabase.getPreviousWeekMinutes());
+            model.getValue().setAverageMinutes(fromDatabase.getAverageMinutes());
+            model.getValue().setAverageKilometers(fromDatabase.getAverageKilometers());
+            model.getValue().setKilometers(fromDatabase.getKilometers());
+            model.getValue().setPrevKilometers(fromDatabase.getPrevKilometers());
+            model.getValue().setTweight(fromDatabase.getTweight());
+            model.getValue().setTkcal(fromDatabase.getTkcal());
+            model.getValue().setTkm(fromDatabase.getTkm());
+            model.getValue().setFriends(fromDatabase.getFriends());
+            model.getValue().setWorkoutTypes(fromDatabase.getWorkoutTypes());
+            if (!model.getValue().getWorkouts().isEmpty()) {
+                try {
+                    Calendar c = Calendar.getInstance();
+                    Workout workout = model.getValue().getWorkouts().get(0);
+                    Date toDate = new SimpleDateFormat().parse(workout.getTime());
+                    c.setTime(toDate);
+                    c.add(Calendar.DATE, 7);
+                    if (c.getTime().compareTo(toDate) < 0) {
+                        endOfWeek();
+                    }
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
 
 
     }

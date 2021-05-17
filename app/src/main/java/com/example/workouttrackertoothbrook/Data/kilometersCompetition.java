@@ -2,6 +2,8 @@ package com.example.workouttrackertoothbrook.Data;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
 
 public class kilometersCompetition extends Competition {
@@ -10,32 +12,18 @@ public class kilometersCompetition extends Competition {
     }
 
     @Override
-    public List<User> getRanking(List<User> contestants) {
-        List<User> list = new ArrayList<>(contestants);
-        quickSortUser(list,0,contestants.size()-1);
+    public List<HashMap> getRanking(List<HashMap> contestants) {
+        List<HashMap> list = new ArrayList<>(contestants);
+        Collections.sort(list,new kilometersCompetition.sortByKilometers());
+        Collections.reverse(list);
         return list;
     }
 
-    private void quickSortUser(List<User> contestants,int start, int end){
-        if(start<end){
+    class sortByKilometers implements Comparator<HashMap> {
 
-            int left= start+1;
-            int right= end;
-            double pivot= contestants.get(start).getKilometers();
-            while (left<=right){
-                while (left <= end && pivot >= contestants.get(left).getKilometers()){
-                    left++;
-                }
-                while (right <= end && pivot >= contestants.get(right).getKilometers()){
-                    right--;
-                }
-                if(left<right){
-                    Collections.swap(contestants,left,right);
-                }
-            }
-            Collections.swap(contestants,start,left-1);
-            quickSortUser(contestants,start,right-1);
-            quickSortUser(contestants,right+1,end);
+        @Override
+        public int compare(HashMap o1, HashMap o2) {
+            return (int) ((int)o1.get("kilometeres") - (int) o2.get("kilometeres"));
         }
     }
 }

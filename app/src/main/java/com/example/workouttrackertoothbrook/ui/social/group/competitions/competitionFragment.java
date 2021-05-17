@@ -29,6 +29,8 @@ import com.example.workouttrackertoothbrook.R;
 import com.example.workouttrackertoothbrook.ui.social.group.groupFragment;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 public class competitionFragment extends Fragment {
 
@@ -79,11 +81,7 @@ public class competitionFragment extends Fragment {
                 public void onClick(DialogInterface dialog, int positiveButton) {
                     String type = spinner.getSelectedItem().toString();
 
-                    competition = mViewModel.createCompetition(type,groupName);
-                    createCompetition.setVisibility(View.GONE);
-                    competitionType.setText(competition.getCategory());
-                    competitionAdapter adapter = new competitionAdapter(mViewModel.getMembersOfGroup(groupName),competition.getCategory());
-                    contestants.setAdapter(adapter);
+                    mViewModel.createCompetition(type,groupName,this);
                 }
             });
 
@@ -96,15 +94,25 @@ public class competitionFragment extends Fragment {
         });
 
 
-        competition = mViewModel.getCompetiton(groupName);
-        if(competition!=null){
+        mViewModel.getCompetiton(groupName,this);
+
+
+
+    }
+
+    public void CompReady(Competition competitionVar,String groupName) {
+        if (competitionVar!=null) {
+            competition= competitionVar;
             createCompetition.setVisibility(View.GONE);
             competitionType.setText(competition.getCategory());
-            competitionAdapter adapter = new competitionAdapter(mViewModel.getMembersOfGroup(groupName),competition.getCategory());
-            contestants.setAdapter(adapter);
+            mViewModel.getMembersOfGroup(groupName,this);
         }
+    }
 
+    public void categoryAndMembersReady(List<HashMap> members) {
+        competitionAdapter adapter = new competitionAdapter(members, competition.getCategory());
 
+        contestants.setAdapter(adapter);
     }
 
 }

@@ -51,6 +51,12 @@
         android:visibility="gone"
         android:text="@string/add_group" />
 
+    <Button
+        android:id="@+id/CreateGroupbutton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/Create_groupButton" />
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
@@ -59,11 +65,7 @@
 
 
 
-    <Button
-        android:id="@+id/CreateGroupbutton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/Create_groupButton" />
+
 
 
 </LinearLayout>

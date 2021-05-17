@@ -9,6 +9,7 @@ import android.widget.TextView;
 import com.example.workouttrackertoothbrook.R;
 import com.example.workouttrackertoothbrook.Data.Group;
 
+import java.util.HashMap;
 import java.util.List;
 
 import androidx.annotation.NonNull;
@@ -18,10 +19,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class groupAdapter extends RecyclerView.Adapter<groupAdapter.ViewHolder> {
 
-    private List<Group> groupsUserIsMemberOf;
+    private List<HashMap> groupsUserIsMemberOf;
     private FragmentActivity fragmentActivity;
 
-    public groupAdapter(List<Group> groupsUserIsMemberOf, FragmentActivity f) {
+    public groupAdapter(List<HashMap> groupsUserIsMemberOf, FragmentActivity f) {
         this.groupsUserIsMemberOf = groupsUserIsMemberOf;
         fragmentActivity=f;
     }
@@ -36,12 +37,12 @@ public class groupAdapter extends RecyclerView.Adapter<groupAdapter.ViewHolder> 
 
     @Override
     public void onBindViewHolder(@NonNull groupAdapter.ViewHolder holder, int position) {
-        holder.groupName.setText(groupsUserIsMemberOf.get(position).getName());
+        holder.groupName.setText(groupsUserIsMemberOf.get(position).get("name").toString());
         holder.groupName.setOnClickListener(v -> {
             FragmentTransaction trans = fragmentActivity.getSupportFragmentManager().beginTransaction();
             groupFragment groupFragment = new groupFragment();
             Bundle bundle = new Bundle();
-            bundle.putString("groupName",groupsUserIsMemberOf.get(position).getName());
+            bundle.putString("groupName",groupsUserIsMemberOf.get(position).get("name").toString());
             groupFragment.setArguments(bundle);
             trans.replace(R.id.nav_host_fragment,groupFragment);
             trans.commit();

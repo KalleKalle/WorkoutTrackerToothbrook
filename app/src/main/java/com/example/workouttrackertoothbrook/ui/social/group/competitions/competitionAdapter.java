@@ -14,17 +14,18 @@ import com.example.workouttrackertoothbrook.R;
 import com.example.workouttrackertoothbrook.ui.social.group.groupAdapter;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class competitionAdapter extends RecyclerView.Adapter<competitionAdapter.ViewHolder> {
-    List<User> contestants;
+    List<HashMap> contestants;
     String type;
     Competition competition;
 
-    public competitionAdapter(List<User> members,String typeOfCompetition) {
+    public competitionAdapter(List<HashMap> members, String typeOfCompetition) {
         type=typeOfCompetition;
         switch (type){
             case "Most Minutes":
@@ -49,13 +50,13 @@ public class competitionAdapter extends RecyclerView.Adapter<competitionAdapter.
     @Override
     public void onBindViewHolder(@NonNull competitionAdapter.ViewHolder holder, int position) {
         holder.placement.setText(String.valueOf(position+1));
-        holder.name.setText(contestants.get(position).getName());
+        holder.name.setText(contestants.get(position).get("name").toString());
         switch (type){
             case "Most Minutes":
-                holder.score.setText(contestants.get(position).getWorkoutMinutes()+" Min");
+                holder.score.setText(contestants.get(position).get("workoutMinutes")+" Min");
                 break;
             default:
-                holder.score.setText(String.valueOf(contestants.get(position).getKilometers())+" Km");
+                holder.score.setText(String.valueOf(contestants.get(position).get("kilometeres"))+" Km");
                 break;
         }
     }
