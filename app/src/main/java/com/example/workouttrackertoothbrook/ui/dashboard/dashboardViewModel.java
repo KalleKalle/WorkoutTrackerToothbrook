@@ -153,10 +153,7 @@ public class dashboardViewModel extends ViewModel implements LifecycleObserver {
         Gson gson= new Gson();
         String data= gson.toJson(value.get("userData"));
         workoutModel fromDatabase = gson.fromJson(data,workoutModel.class);
-        if (model.getValue().getSelf()==null){
-            new Network().LogOut();
-        }
-        else {
+        try {
             model.getValue().getSelf().setId(fromDatabase.getSelf().getId());
             model.getValue().getSelf().setName(fromDatabase.getSelf().getName());
             model.getValue().getSelf().setHeight(fromDatabase.getSelf().getHeight());
@@ -175,6 +172,9 @@ public class dashboardViewModel extends ViewModel implements LifecycleObserver {
             model.getValue().setTkm(fromDatabase.getTkm());
             model.getValue().setFriends(fromDatabase.getFriends());
             model.getValue().setWorkoutTypes(fromDatabase.getWorkoutTypes());
+        }catch (NullPointerException e) {
+            new Network().LogOut();
+        }
             if (!model.getValue().getWorkouts().isEmpty()) {
                 try {
                     Calendar c = Calendar.getInstance();
@@ -190,10 +190,6 @@ public class dashboardViewModel extends ViewModel implements LifecycleObserver {
                 }
             }
         }
-
-
-
-    }
 
     void endOfWeek(){
         model.getValue().setAverageMinutes(calcAverageMin());
