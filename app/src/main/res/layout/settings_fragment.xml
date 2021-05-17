@@ -30,12 +30,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="20sp"
+                android:textColor="@color/black"
                 android:gravity="center"
-                android:text="Add Workout Type"
+                android:text="@string/add_workout_type"
                 />
             <EditText
                 android:id="@+id/workoutType"
                 android:layout_width="match_parent"
+                android:backgroundTint="@color/cardview_dark_background"
                 android:layout_height="wrap_content"
                 />
             <Button
@@ -55,6 +57,7 @@
                 android:text="@string/email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textColor="@color/black"
                 android:textSize="20sp"
                 android:gravity="center"
                 />
@@ -62,7 +65,9 @@
             <EditText
                 android:id="@+id/emailOfUser"
                 android:layout_height="wrap_content"
+                android:textColor="@color/black"
                 android:inputType="textEmailAddress"
+                android:backgroundTint="@color/cardview_dark_background"
                 android:layout_width="match_parent"
                 />
 

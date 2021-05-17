@@ -26,6 +26,7 @@ public class Network {
     Competition competition= null;
     ArrayList<Group> groupArrayList = null;
     Group group= null;
+    boolean logout= false;
 
     public Network() {
         this.firebaseAuth = FirebaseAuth.getInstance();
@@ -143,23 +144,39 @@ public class Network {
     }
 
     public void LogOut() {
+        logout=true;
+        saveAll();
+
+    }
+
+    private void realLogout() {
         firebaseAuth.signOut();
     }
 
     public void saveAll() {
-        DocumentReference documentReference = firestore.collection("users").document(firebaseAuth.getCurrentUser().getUid());
-        Map<String,Object> change= new HashMap<>();
-        change.put("userData",workoutModel.getInstance());
-        documentReference.update(change).addOnSuccessListener(new OnSuccessListener<Void>() {
-            @Override
-            public void onSuccess(Void aVoid) {
-                Log.d("database","save Successful");
+        try {
+            if (firebaseAuth != null) {
+                DocumentReference documentReference = firestore.collection("users").document(firebaseAuth.getCurrentUser().getUid());
+                Map<String, Object> change = new HashMap<>();
+                change.put("userData", workoutModel.getInstance());
+                documentReference.update(change).addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Log.d("database", "save Successful");
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.d("database", e.toString());
+                    }
+                });
             }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                Log.d("database",e.toString());
+            if (logout) {
+                logout = false;
+                realLogout();
             }
-        });
+        }catch (NullPointerException ignored){
+
+        }
     }
 }

@@ -13,6 +13,7 @@
             android:id="@+id/contestantPlacement"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="@color/black"
             android:layout_weight="5"
             android:text="1."
             android:textSize="20sp"/>
@@ -20,6 +21,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textColor="@color/black"
         android:id="@+id/contestantName"
         android:layout_weight="3"
         android:textSize="20sp"
@@ -28,6 +30,7 @@
     <TextView
         android:id="@+id/contestantScore"
         android:layout_width="match_parent"
+        android:textColor="@color/black"
         android:layout_height="wrap_content"
         android:textSize="20sp"
         android:layout_weight="3"

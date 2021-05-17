@@ -52,13 +52,13 @@ public class InformationFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         mViewModel = new ViewModelProvider(this).get(InformationViewModel.class);
-        height.setText(mViewModel.getHeight());
-        weight.setText(mViewModel.getWeight());
-        weightGoal.setText(mViewModel.getWeightGoal());
+        height.setText(mViewModel.getHeight(getContext()));
+        weight.setText(mViewModel.getWeight(getContext()));
+        weightGoal.setText(mViewModel.getWeightGoal(getContext()));
         bmi.setText(mViewModel.getBMI());
         getkCalBurnedWeek.setText(mViewModel.getKCalBurnedWeek());
-        kCalGoal.setText(mViewModel.getKCalGoal());
-        kmGoal.setText(mViewModel.getKmGoal());
+        kCalGoal.setText(mViewModel.getKCalGoal(getContext()));
+        kmGoal.setText(mViewModel.getKmGoal(getContext()));
     }
 
 }

@@ -21,6 +21,7 @@
     <TextView
         android:id="@+id/typeofCompetition"
         android:layout_width="match_parent"
+        android:textColor="@color/black"
         android:layout_height="wrap_content"
         android:gravity="center"
         android:text="@string/there_s_no_current_competition"

@@ -1,6 +1,9 @@
 package com.example.workouttrackertoothbrook.ui.personal.seeInformation;
 
+import android.content.Context;
+
 import com.example.workouttrackertoothbrook.Data.workoutModel;
+import com.example.workouttrackertoothbrook.R;
 
 import java.text.DecimalFormat;
 
@@ -12,28 +15,28 @@ public class InformationViewModel extends ViewModel {
     public InformationViewModel() {
         model= workoutModel.getInstance();
 }
-    public String getHeight() {
+    public String getHeight(Context context) {
         int h=model.getSelf().getHeight();
         if (h!=0){
             return Integer.toString(h)+"cm";
         }
-        return "No Data";
+        return context.getString(R.string.noDate);
     }
 
-    public String getWeight() {
+    public String getWeight(Context context) {
         double w=model.getSelf().getWeight();
         if (w!=0){
             return Double.toString(w)+"Kg";
         }
-        return "No Data";
+        return context.getString(R.string.noDate);
     }
 
-    public String getWeightGoal() {
+    public String getWeightGoal(Context context) {
         double w=model.getTweight();
         if (w!=0){
             return Double.toString(w);
         }
-        return "No Data";
+        return context.getString(R.string.noDate);
     }
 
     public String getBMI() {
@@ -58,20 +61,20 @@ public class InformationViewModel extends ViewModel {
 
 
 
-    public String getKCalGoal() {
+    public String getKCalGoal(Context context) {
         int kCal=model.getTkcal();
         if (kCal!=0){
             return (Integer.toString(kCal-getKCalBurnedWeekInt())+"kcal");
         }
-        return "No Data";
+        return context.getString(R.string.noDate);
     }
 
-    public String getKmGoal() {
+    public String getKmGoal(Context context) {
         double Km=model.getTkm();
         if (Km!=0){
             return (Double.toString(Km-model.getKilometers())+"Km");
         }
-        return "No Data";
+        return context.getString(R.string.noDate);
     }
 
 

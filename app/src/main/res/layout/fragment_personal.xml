@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 
-<ScrollView android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+<ScrollView xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
 
@@ -28,12 +30,14 @@
             android:layout_width="wrap_content"
             android:layout_height="50dp"
             android:layout_weight="1"
+            app:tint="@color/cardview_dark_background"
             android:src="@drawable/ic_baseline_person_24"
             android:contentDescription="@string/person" />
 
         <TextView
             android:id="@+id/textBody"
             android:layout_width="wrap_content"
+            android:textColor="@color/black"
             android:layout_height="match_parent"
             android:layout_weight="4"
             android:textSize="30sp"
@@ -45,6 +49,7 @@
     <LinearLayout
         android:id="@+id/settingsLayout"
         android:layout_width="match_parent"
+
         android:clickable="true"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
@@ -54,10 +59,12 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:src="@drawable/ic_baseline_settings_24"
-            android:contentDescription="@string/settingsinfo" />
+            android:contentDescription="@string/settingsinfo"
+            app:tint="@color/cardview_dark_background" />
         <TextView
             android:id="@+id/TextSettings"
             android:layout_width="0dp"
+            android:textColor="@color/black"
             android:layout_height="match_parent"
             android:layout_weight="4"
             android:textSize="30sp"
@@ -82,11 +89,13 @@
             android:clickable="true"
             android:src="@drawable/ic_baseline_person_add_alt_1_24"
             android:focusable="true"
-            android:contentDescription="@string/add_friend" />
+            android:contentDescription="@string/add_friend"
+            app:tint="@color/cardview_dark_background" />
 
         <TextView
             android:id="@+id/addFriendText"
             android:layout_width="50dp"
+            android:textColor="@color/black"
             android:layout_height="wrap_content"
             android:layout_weight="6"
             android:textSize="30sp"
@@ -110,11 +119,13 @@
             android:clickable="true"
             android:src="@drawable/ic_baseline_outlined_flag_24"
             android:focusable="true"
-            android:contentDescription="@string/Addfriend" />
+            android:contentDescription="@string/Addfriend"
+            app:tint="@color/cardview_dark_background" />
 
         <TextView
             android:id="@+id/setGoalText"
             android:layout_width="50dp"
+            android:textColor="@color/black"
             android:layout_height="wrap_content"
             android:layout_weight="6"
             android:textSize="30sp"
@@ -138,12 +149,14 @@
             android:clickable="true"
             android:src="@drawable/ic_baseline_directions_run_24"
             android:focusable="true"
-            android:contentDescription="@string/seeworkouts" />
+            android:contentDescription="@string/seeworkouts"
+            app:tint="@color/cardview_dark_background" />
 
         <TextView
             android:id="@+id/seeWorkoutsText"
             android:layout_width="50dp"
             android:layout_height="wrap_content"
+            android:textColor="@color/black"
             android:layout_weight="6"
             android:textSize="30sp"
             android:clickable="true"
@@ -166,11 +179,13 @@
             android:clickable="true"
             android:src="@drawable/ic_baseline_psychology_24"
             android:focusable="true"
-            android:contentDescription="@string/see_information" />
+            android:contentDescription="@string/see_information"
+            app:tint="@color/cardview_dark_background" />
 
         <TextView
             android:id="@+id/seeinformationText"
             android:layout_width="50dp"
+            android:textColor="@color/black"
             android:layout_height="wrap_content"
             android:layout_weight="6"
             android:textSize="30sp"
@@ -182,6 +197,7 @@
     <FrameLayout
         android:id="@+id/fragmentpart"
         android:layout_width="match_parent"
+        android:background="@color/white"
         android:layout_height="wrap_content" />
 </LinearLayout>
 </ScrollView>

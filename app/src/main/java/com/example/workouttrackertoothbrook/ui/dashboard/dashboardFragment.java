@@ -98,12 +98,12 @@ public class dashboardFragment extends Fragment {
         dashboardViewModel.getModel().observe(getActivity(), new Observer<workoutModel>() {
             @Override
             public void onChanged(workoutModel workoutModel) {
-                prevMinutes.setText(dashboardViewModel.getLastWeekTimeString());
-                minutes.setText(dashboardViewModel.getTimeString());
-                kilometers.setText(dashboardViewModel.getKilometers().getValue());
-                prevKilometers.setText(dashboardViewModel.getPreviousKilometers().getValue());
-                averageKilometers.setText(dashboardViewModel.getAverageKilometers().getValue());
-                averageMinutes.setText(dashboardViewModel.getAvgTimeString());
+                prevMinutes.setText(dashboardViewModel.getLastWeekTimeString(getContext()));
+                minutes.setText(dashboardViewModel.getTimeString(getContext()));
+                kilometers.setText(dashboardViewModel.getKilometers(getContext()).getValue());
+                prevKilometers.setText(dashboardViewModel.getPreviousKilometers(getContext()).getValue());
+                averageKilometers.setText(dashboardViewModel.getAverageKilometers(getContext()).getValue());
+                averageMinutes.setText(dashboardViewModel.getAvgTimeString(getContext()));
 
             }
         });
@@ -113,20 +113,23 @@ public class dashboardFragment extends Fragment {
             @Override
             public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
                 if (value!=null) {
-                    dashboardViewModel.loadModel(value);
-                    prevMinutes.setText(dashboardViewModel.getLastWeekTimeString());
-                    minutes.setText(dashboardViewModel.getTimeString());
-                    kilometers.setText(dashboardViewModel.getKilometers().getValue());
-                    prevKilometers.setText(dashboardViewModel.getPreviousKilometers().getValue());
-                    averageKilometers.setText(dashboardViewModel.getAverageKilometers().getValue());
-                    averageMinutes.setText(dashboardViewModel.getAvgTimeString());
+                    dashboardViewModel.loadModel(value,getContext());
+                    prevMinutes.setText(dashboardViewModel.getLastWeekTimeString(getContext()));
+                    minutes.setText(dashboardViewModel.getTimeString(getContext()));
+                    kilometers.setText(dashboardViewModel.getKilometers(getContext()).getValue());
+                    prevKilometers.setText(dashboardViewModel.getPreviousKilometers(getContext()).getValue());
+                    averageKilometers.setText(dashboardViewModel.getAverageKilometers(getContext()).getValue());
+                    averageMinutes.setText(dashboardViewModel.getAvgTimeString(getContext()));
+                    ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(getActivity().getBaseContext(), android.R.layout.simple_spinner_item,dashboardViewModel.getWorkoutTypes());
+                    arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    spinner.setAdapter(arrayAdapter);
                 }
             }
         });
 
 
 
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_item,dashboardViewModel.getWorkoutTypes());
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(getActivity().getBaseContext(), android.R.layout.simple_spinner_item,dashboardViewModel.getWorkoutTypes());
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(arrayAdapter);
 
@@ -136,7 +139,7 @@ public class dashboardFragment extends Fragment {
                     editReps.getText().toString());
             editReps.setText("");
             editMinutes.setText("");
-            minutes.setText(dashboardViewModel.getTimeString());
+            minutes.setText(dashboardViewModel.getTimeString(getContext()));
             Toast.makeText(getActivity(),"Workout added", Toast.LENGTH_LONG).show();
         });
     }

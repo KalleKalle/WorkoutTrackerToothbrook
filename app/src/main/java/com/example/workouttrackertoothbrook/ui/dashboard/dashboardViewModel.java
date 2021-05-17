@@ -1,8 +1,11 @@
 package com.example.workouttrackertoothbrook.ui.dashboard;
 
+import android.content.Context;
+
 import com.example.workouttrackertoothbrook.Data.Network;
 import com.example.workouttrackertoothbrook.Data.Workout;
 import com.example.workouttrackertoothbrook.Data.workoutModel;
+import com.example.workouttrackertoothbrook.R;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.gson.Gson;
 
@@ -39,22 +42,22 @@ public class dashboardViewModel extends ViewModel implements LifecycleObserver {
         return mText;
     }
 
-    public LiveData<String> getPreviousKilometers() {
+    public LiveData<String> getPreviousKilometers(Context context) {
 
         MutableLiveData<String> d = new MutableLiveData<>();
         double km= model.getValue().getPrevKilometers();
         if (km==-1){
-            d.setValue("Last week: " + "0 Km");
+            d.setValue(R.string.Last_week + "0 Km");
             return d;
         }
-        d.setValue("Last week: " + km+" Km");
+        d.setValue(context.getString(R.string.Last_week) + km+" Km");
         return d;
 
     }
 
-    public LiveData<String> getKilometers() {
+    public LiveData<String> getKilometers(Context context) {
         MutableLiveData<String> d = new MutableLiveData<>();
-        d.setValue("This week "+model.getValue().getKilometers()+" Km");
+        d.setValue(context.getString(R.string.This_week) +model.getValue().getKilometers()+" Km");
         return d;
     }
 
@@ -76,14 +79,14 @@ public class dashboardViewModel extends ViewModel implements LifecycleObserver {
         return d;
     }
 
-    public LiveData<String> getAverageKilometers(){
+    public LiveData<String> getAverageKilometers(Context context){
         MutableLiveData<String> d = new MutableLiveData<>();
-        d.setValue("Avg Distance: " + model.getValue().getAverageKilometers()+" Km");
+        d.setValue(context.getString(R.string.avg_distance) + model.getValue().getAverageKilometers()+" Km");
         return d;
     }
 
 
-    public String getLastWeekTimeString() {
+    public String getLastWeekTimeString(Context context) {
         int time= model.getValue().getPreviousWeekMinutes();
         int hour=0;
         while(time>=60){
@@ -91,12 +94,12 @@ public class dashboardViewModel extends ViewModel implements LifecycleObserver {
             time=time-60;
         }
         if(hour==0){
-            return "Last week: " +  time+" Min";
+            return context.getString(R.string.Last_week) +  time+" Min";
         }
-        return "Last week: " +  hour+"H "+time+" Min";
+        return context.getString(R.string.Last_week) +  hour+R.string.hour +time+" Min";
     }
 
-    public String getTimeString() {
+    public String getTimeString(Context context) {
         int time= model.getValue().getWorkoutMinutes();
         int hour=0;
         while(time>=60){
@@ -104,12 +107,12 @@ public class dashboardViewModel extends ViewModel implements LifecycleObserver {
             time=time-60;
         }
         if(hour==0){
-            return "This week "+ time+" Min";
+            return context.getString(R.string.This_week)+ time+" Min";
         }
-        return "This week "+ hour+"H "+time+" Min";
+        return context.getString(R.string.This_week)+ hour+R.string.hour + time+" Min";
     }
 
-    public String getAvgTimeString() {
+    public String getAvgTimeString(Context context) {
         int time= model.getValue().getAverageMinutes();
         int hour=0;
         while(time>=60){
@@ -117,13 +120,16 @@ public class dashboardViewModel extends ViewModel implements LifecycleObserver {
             time=time-60;
         }
         if(hour==0){
-            return "Avg time: " +  time+" Min";
+            return context.getString(R.string.avg_minutes) +  time+" Min";
         }
-        return "Avg time: " +  hour+"H "+time+" Min";
+        return context.getString(R.string.avg_minutes) +  hour+R.string.hour +time+" Min";
     }
 
     public ArrayList<String> getWorkoutTypes(){
-       return model.getValue().getWorkoutTypes();
+        if (model.getValue().getWorkoutTypes()!= null){
+            return model.getValue().getWorkoutTypes();
+        }
+       return new ArrayList<>();
     }
 
     public void addWorkout(String workoutType, String minutes, String reps) {
@@ -149,7 +155,7 @@ public class dashboardViewModel extends ViewModel implements LifecycleObserver {
         model.getValue().setWorkoutMinutes(wm);
     }
 
-    public void loadModel(DocumentSnapshot value) {
+    public void loadModel(DocumentSnapshot value, Context context) {
         Gson gson= new Gson();
         String data= gson.toJson(value.get("userData"));
         workoutModel fromDatabase = gson.fromJson(data,workoutModel.class);

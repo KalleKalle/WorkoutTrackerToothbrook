@@ -98,6 +98,7 @@ public class Register extends AppCompatActivity {
                         DocumentReference documentReference= firestore.collection("users").document(userId);
                         Map<String,Object> user= new HashMap<>();
                         workoutModel model = workoutModel.getInstance();
+                        model.WorkoutTypesCreator(getApplicationContext());
                         model.getSelf().setEmail(email);
                         model.getSelf().setHeight(height);
                         model.getSelf().setWeight(weight);

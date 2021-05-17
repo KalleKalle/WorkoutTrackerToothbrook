@@ -74,6 +74,7 @@
         android:layout_marginBottom="12dp"
         android:ems="10"
         android:inputType="number"
+        android:textColor="@color/white"
         android:textColorHint="@color/white"
         android:hint="@string/height_register"
         app:layout_constraintBottom_toTopOf="@+id/weightRegister"
@@ -88,6 +89,7 @@
         android:ems="10"
         android:hint="@string/weight_register"
         android:inputType="numberDecimal"
+        android:textColor="@color/white"
         android:textColorHint="@color/white"
         app:layout_constraintBottom_toTopOf="@+id/signupButton"
         app:layout_constraintEnd_toEndOf="parent"
@@ -123,6 +125,7 @@
     <EditText
         android:id="@+id/nameRegister"
         android:layout_width="wrap_content"
+        android:textColor="@color/white"
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="@string/name"

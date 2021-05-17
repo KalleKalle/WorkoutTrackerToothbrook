@@ -1,5 +1,9 @@
 package com.example.workouttrackertoothbrook.Data;
 
+import android.content.Context;
+
+import com.example.workouttrackertoothbrook.R;
+
 import java.util.ArrayList;
 
 public class workoutModel {
@@ -7,20 +11,23 @@ public class workoutModel {
 
     private static workoutModel single_instance = null;
 
-    ArrayList<Workout> workouts;
-    ArrayList<Workout> previousWeekWorkouts;
-    int workoutMinutes;
-    int previousWeekMinutes;
-    int averageMinutes;
-    double averageKilometers;
-    double kilometers;
-    double prevKilometers;
-    double tweight;
-    int tkcal;
-    double tkm;
-    User self;
-    ArrayList<User> friends;
-    ArrayList<String> workoutTypes;
+   private ArrayList<Workout> workouts;
+   private ArrayList<Workout> previousWeekWorkouts;
+   private int workoutMinutes;
+    private int previousWeekMinutes;
+   private int averageMinutes;
+    private double averageKilometers;
+
+   private double kilometers;
+   private double prevKilometers;
+    private double tweight;
+   private int tkcal;
+
+    private double tkm;
+    private User self;
+    private ArrayList<User> friends;
+    private ArrayList<String> workoutTypes;
+
 
 
 
@@ -78,21 +85,12 @@ public class workoutModel {
     }
 
     private workoutModel() {
-        /*
-
-        TWeight= 85;
-        TKcal=88000;
-        TKm=20;
-
-
-         */
 
         workoutMinutes=0;
         previousWeekMinutes=0;
         averageKilometers=0;
         averageMinutes=0;
         kilometers=0;
-        WorkoutTypesCreator();
         workouts= new ArrayList<>();
         previousWeekWorkouts = new ArrayList<>();
         friends=new ArrayList<>();
@@ -100,20 +98,20 @@ public class workoutModel {
 
     }
 
-    private void WorkoutTypesCreator() {
+    public void WorkoutTypesCreator(Context context) {
         workoutTypes=new ArrayList<>();
-        workoutTypes.add("Glute bridge");
-        workoutTypes.add("Lateral rise");
-        workoutTypes.add("Reverse lunge");
-        workoutTypes.add("Bicep curl");
-        workoutTypes.add("Chest press");
-        workoutTypes.add("Crunches");
-        workoutTypes.add("Overhead press");
-        workoutTypes.add("Plank");
-        workoutTypes.add("Push up");
-        workoutTypes.add("Squat");
-        workoutTypes.add("Superman");
-        workoutTypes.add("Walk/Run");
+        workoutTypes.add(context.getString(R.string.glutebrigde));
+        workoutTypes.add(context.getString(R.string.lateralrise));
+        workoutTypes.add(context.getString(R.string.reverselunge));
+        workoutTypes.add(context.getString(R.string.bicepcurl));
+        workoutTypes.add(context.getString(R.string.chestpress));
+        workoutTypes.add(context.getString(R.string.crunches));
+        workoutTypes.add(context.getString(R.string.overheadpress));
+        workoutTypes.add(context.getString(R.string.plank));
+        workoutTypes.add(context.getString(R.string.pushup));
+        workoutTypes.add(context.getString(R.string.squat));
+        workoutTypes.add(context.getString(R.string.superman));
+        workoutTypes.add(context.getString(R.string.walkRun));
     }
 
     public ArrayList<Workout> getWorkouts() {

@@ -28,6 +28,7 @@
             <TextView
                 android:text="@string/target_weight"
                 android:layout_width="match_parent"
+                android:textColor="@color/black"
                 android:layout_height="wrap_content"
 
                 android:textSize="20sp"
@@ -37,6 +38,9 @@
             <EditText
                 android:id="@+id/idealWeightOfUser"
                 android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:textColorHint="@color/cardview_dark_background"
+                android:backgroundTint="@color/cardview_dark_background"
                 android:layout_width="match_parent"
                 android:hint="@string/no_goal_set"
                 android:inputType="numberDecimal"
@@ -45,6 +49,7 @@
             <TextView
                 android:text="@string/target_km_for_week"
                 android:layout_width="match_parent"
+                android:textColor="@color/black"
                 android:layout_height="wrap_content"
                 android:textSize="20sp"
                 android:gravity="center"
@@ -55,12 +60,16 @@
                 android:layout_height="wrap_content"
                 android:hint="@string/no_goal_set"
                 android:inputType="numberDecimal"
+                android:textColorHint="@color/cardview_dark_background"
+                android:backgroundTint="@color/cardview_dark_background"
+                android:textColor="@color/black"
                 android:layout_width="match_parent"
                 />
 
             <TextView
                 android:text="@string/target_kcal"
                 android:layout_width="match_parent"
+                android:textColor="@color/black"
                 android:layout_height="wrap_content"
                 android:textSize="20sp"
                 android:gravity="center"
@@ -69,7 +78,11 @@
             <EditText
                 android:id="@+id/target_Kcal"
                 android:layout_height="wrap_content"
+                android:textColorHint="@color/cardview_dark_background"
+                android:backgroundTint="@color/cardview_dark_background"
                 android:inputType="number"
+                android:textColor="@color/black"
+
                 android:hint="@string/no_goal_set"
                 android:layout_width="match_parent"
                 />

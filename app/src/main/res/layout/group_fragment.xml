@@ -28,19 +28,23 @@
             android:id="@+id/members"
             android:clickable="true"
             android:layout_width="0dp"
+            android:background="@color/white"
             android:layout_height="50dp"
             android:layout_weight="2"
             android:src="@drawable/ic_baseline_groups_24"
-            android:focusable="true" />
+            android:focusable="true"
+            app:tint="@color/cardview_dark_background" />
 
         <ImageView
             android:id="@+id/competition"
             android:clickable="true"
             android:layout_width="0dp"
+            android:background="@color/white"
             android:layout_height="50dp"
             android:layout_weight="2"
             android:src="@drawable/ic_baseline_outlined_flag_24"
-            android:focusable="true" />
+            android:focusable="true"
+            app:tint="@color/cardview_dark_background" />
 
 
 
@@ -48,6 +52,7 @@
     <TextView
         android:id="@+id/groupNameTitle"
         android:layout_width="match_parent"
+        android:textColor="@color/black"
         android:layout_height="wrap_content"
         android:text="GroupName"
         android:textSize="35sp"
