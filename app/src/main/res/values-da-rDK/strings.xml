@@ -99,4 +99,6 @@
     <string name="cancel">Annullér</string>
     <string name="nogroupFound">Ingen gruppe fundet</string>
     <string name="foundgroup">"FANDT: "</string>
+    <string name="stop">Stop</string>
+    <string name="start_workout">Start træning</string>
 </resources>

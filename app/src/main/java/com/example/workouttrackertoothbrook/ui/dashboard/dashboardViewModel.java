@@ -117,7 +117,7 @@ public class dashboardViewModel extends ViewModel implements LifecycleObserver {
         if(hour==0){
             return context.getString(R.string.Last_week) +  time+" Min";
         }
-        return context.getString(R.string.Last_week) +  hour+R.string.hour +time+" Min";
+        return context.getString(R.string.Last_week) +  hour+context.getString(R.string.hour) +time+" Min";
     }
 
     public String getTimeString(Context context) {
@@ -130,7 +130,7 @@ public class dashboardViewModel extends ViewModel implements LifecycleObserver {
         if(hour==0){
             return context.getString(R.string.This_week)+ time+" Min";
         }
-        return context.getString(R.string.This_week)+ hour+R.string.hour + time+" Min";
+        return context.getString(R.string.This_week)+ hour+context.getString(R.string.hour) + time+" Min";
     }
 
     public String getAvgTimeString(Context context) {
@@ -143,7 +143,7 @@ public class dashboardViewModel extends ViewModel implements LifecycleObserver {
         if(hour==0){
             return context.getString(R.string.avg_minutes) +  time+" Min";
         }
-        return context.getString(R.string.avg_minutes) +  hour+R.string.hour +time+" Min";
+        return context.getString(R.string.avg_minutes) +  hour+context.getString(R.string.hour) +time+" Min";
     }
 
     public ArrayList<String> getWorkoutTypes(){

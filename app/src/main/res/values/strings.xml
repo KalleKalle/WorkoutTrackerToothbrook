@@ -98,4 +98,7 @@
     <string name="cancel">Cancel</string>
     <string name="nogroupFound">No group found</string>
     <string name="foundgroup">"FOUND: "</string>
+    <string name="start_workout">Start workout</string>
+    <string name="stop">Stop</string>
+    <string name="time" translatable="false">0:0:0</string>
 </resources>
