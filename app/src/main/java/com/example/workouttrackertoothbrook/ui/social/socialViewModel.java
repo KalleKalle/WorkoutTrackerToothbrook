@@ -1,6 +1,5 @@
 package com.example.workouttrackertoothbrook.ui.social;
 
-import android.content.DialogInterface;
 import android.util.Log;
 
 import com.example.workouttrackertoothbrook.Data.Competition;
@@ -35,7 +34,8 @@ public class socialViewModel extends ViewModel {
     private ArrayList<Group> groupArrayList = null;
     private ArrayList<HashMap> groupHashMap = null;
     private Group group= null;
-    Boolean run;
+    Boolean run1;
+    boolean run2;
 
     public socialViewModel() {
         model= workoutModel.getInstance();
@@ -60,22 +60,25 @@ public class socialViewModel extends ViewModel {
         });
     }
 
-    public void addGroup(Group group) {
-        run=false;
+    public void addGroup(Group group, boolean NewGroup) {
+        run1=false;
+        run2=false;
         DocumentReference documentReference= firestore.collection("users").document(model.getSelf().getId());
         documentReference.addSnapshotListener(new EventListener<DocumentSnapshot>() {
             @Override
             public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
-                if (!run) {
+                if (!run1) {
+                    run1=true;
                     DocumentReference documentReference2 = firestore.collection("users").document(model.getSelf().getId());
                     Map<String, Object> groupsMap = new HashMap<>();
                     groupArrayList = (ArrayList<Group>) value.get("groups");
                     groupArrayList.add(group);
                     groupsMap.put("groups", groupArrayList);
-                    documentReference.update(groupsMap).addOnSuccessListener(new OnSuccessListener<Void>() {
+                    documentReference2.update(groupsMap).addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
                         public void onSuccess(Void aVoid) {
                             Log.d("database", "add group Successful");
+
                         }
                     }).addOnFailureListener(new OnFailureListener() {
                         @Override
@@ -83,10 +86,40 @@ public class socialViewModel extends ViewModel {
                             Log.d("database", e.toString());
                         }
                     });
-                    run=true;
+
                 }
             }
         });
+        if (!NewGroup) {
+            DocumentReference documentReference3 = firestore.collection("groups").document(group.getName());
+            documentReference3.addSnapshotListener(new EventListener<DocumentSnapshot>() {
+                @Override
+                public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
+                    if (!run2) {
+                        run2 = true;
+                        Map<String, Object> memberMap = new HashMap<>();
+                        ArrayList<User> members = (ArrayList<User>) value.get("members");
+                        members.add(model.getSelf());
+                        memberMap.put("members", members);
+                        documentReference3.update(memberMap).addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void aVoid) {
+                                Log.d("database", "add member to group Successful");
+
+                            }
+                        }).addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                Log.d("database", e.toString());
+                            }
+                        });
+                    }
+
+                }
+
+            });
+            //run=true;
+        }
 
     }
 
@@ -128,7 +161,7 @@ public class socialViewModel extends ViewModel {
                 Log.d("database",e.toString());
             }
         });
-        addGroup(group);
+        addGroup(group,true);
     }
 
     public void groupReady(Group group) {

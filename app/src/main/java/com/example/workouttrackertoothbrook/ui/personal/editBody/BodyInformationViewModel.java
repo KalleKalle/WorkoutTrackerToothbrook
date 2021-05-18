@@ -1,5 +1,6 @@
 package com.example.workouttrackertoothbrook.ui.personal.editBody;
 
+import com.example.workouttrackertoothbrook.Data.Network;
 import com.example.workouttrackertoothbrook.Data.workoutModel;
 
 import androidx.lifecycle.LiveData;
@@ -31,6 +32,8 @@ public class BodyInformationViewModel extends ViewModel {
         model.getValue().getSelf().setName(name);
         model.getValue().getSelf().setHeight(Integer.parseInt(height));
         model.getValue().getSelf().setWeight(Double.parseDouble(weight));
+        Network network = new Network();
+        network.saveAll();
 
 
     }

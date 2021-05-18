@@ -52,7 +52,7 @@ public class addFriendFragment extends Fragment {
             friend= mViewModel.searchForFriend(searchbar.getText().toString());
             if(friend!=null){
                 addFriend.setVisibility(View.VISIBLE);
-                friendName.setText("FOUND: "+friend.getName());
+                friendName.setText(getString(R.string.found) + friend.getName());
             }
         });
 

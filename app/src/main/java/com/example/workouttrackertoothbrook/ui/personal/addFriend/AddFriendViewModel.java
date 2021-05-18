@@ -22,5 +22,6 @@ public class AddFriendViewModel extends ViewModel {
 
     public void addFriend(User friend) {
         model.addFriend(friend);
+        network.saveAll();
     }
 }

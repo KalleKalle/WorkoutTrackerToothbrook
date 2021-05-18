@@ -68,17 +68,17 @@ public class socialFragment extends Fragment {
 
         });
 
-        addGroup.setOnClickListener(v -> viewModel.addGroup(group));
+        addGroup.setOnClickListener(v -> viewModel.addGroup(group, true));
 
         createGroupButton.setOnClickListener(v -> {
             AlertDialog.Builder createGroupDialog = new AlertDialog.Builder(getActivity());
             final EditText groupNameEditText = new EditText(getActivity());
-            createGroupDialog.setMessage("Enter your group name");
-            createGroupDialog.setTitle("Create Group");
+            createGroupDialog.setMessage(getString(R.string.entergroupname));
+            createGroupDialog.setTitle(getString(R.string.createGroup));
 
             createGroupDialog.setView(groupNameEditText);
 
-            createGroupDialog.setPositiveButton("Create", new DialogInterface.OnClickListener() {
+            createGroupDialog.setPositiveButton(getString(R.string.create), new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int positiveButton) {
                     String groupName = groupNameEditText.getText().toString();
                     viewModel.createGroup(groupName,socialFragment.this);
@@ -92,7 +92,7 @@ public class socialFragment extends Fragment {
                 }
             });
 
-            createGroupDialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            createGroupDialog.setNegativeButton(getString(R.string.cancel), new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int negativeButton) {
                 }
             });
@@ -114,10 +114,10 @@ public class socialFragment extends Fragment {
         if(group!=null){
             addGroup.setVisibility(View.VISIBLE);
             groupNameTextView.setVisibility(View.VISIBLE);
-            groupNameTextView.setText("FOUND: "+group.getName());
+            groupNameTextView.setText(getString(R.string.foundgroup) + group.getName());
         }
         else {
-            groupNameTextView.setText("No group found");
+            groupNameTextView.setText(getString(R.string.nogroupFound));
         }
     }
 }

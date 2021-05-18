@@ -1,20 +1,36 @@
 package com.example.workouttrackertoothbrook.ui.dashboard;
 
 import android.content.Context;
+import android.util.Log;
 
+import com.example.workouttrackertoothbrook.Data.Group;
 import com.example.workouttrackertoothbrook.Data.Network;
+import com.example.workouttrackertoothbrook.Data.User;
 import com.example.workouttrackertoothbrook.Data.Workout;
 import com.example.workouttrackertoothbrook.Data.workoutModel;
 import com.example.workouttrackertoothbrook.R;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.lifecycle.LifecycleObserver;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -24,6 +40,10 @@ public class dashboardViewModel extends ViewModel implements LifecycleObserver {
 
     private MutableLiveData<String> mText;
     private MutableLiveData<workoutModel> model;
+    private FirebaseFirestore firestore;
+    private boolean run;
+    private ArrayList<Group> groupArrayList;
+    private ArrayList<String>alreadyUpdatedGroups;
 
     public MutableLiveData<workoutModel> getModel() {
         return model;
@@ -34,6 +54,7 @@ public class dashboardViewModel extends ViewModel implements LifecycleObserver {
         mText.setValue("This is dashboard fragment");
         model = new MutableLiveData<>();
         model.setValue(workoutModel.getInstance());
+        firestore= FirebaseFirestore.getInstance();
 
 
     }
@@ -139,10 +160,62 @@ public class dashboardViewModel extends ViewModel implements LifecycleObserver {
             if (m > 0 && r > 0) {
                 addWorkoutMinutes(m);
                 addWorkoutReps(workoutType, r,m);
-
+                Network network = new Network();
+                network.saveAll();
+                updateGroups();
             }
         }
 
+    }
+
+    private void updateGroups() {
+        alreadyUpdatedGroups=new ArrayList<>();
+        DocumentReference documentReference= firestore.collection("users").document(model.getValue().getSelf().getId());
+        documentReference.addSnapshotListener(new EventListener<DocumentSnapshot>() {
+            @Override
+            public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
+
+                    DocumentReference documentReference2 ;
+                    Map<String, Object> groupsMap = new HashMap<>();
+                    groupArrayList = new Gson().fromJson(new Gson().toJson(value.get("groups")),new TypeToken<List<Group>>(){}.getType());;
+                    for (Group g: groupArrayList) {
+                        documentReference2= firestore.collection("groups").document((String) g.getName());
+                        documentReference2.addSnapshotListener(new EventListener<DocumentSnapshot>() {
+                            @Override
+                            public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
+                                if (!alreadyUpdatedGroups.contains(value.getString("name"))) {
+                                    alreadyUpdatedGroups.add(value.getString("name"));
+                                    ArrayList<User> mem= new Gson().fromJson(new Gson().toJson(value.get("members")),new TypeToken<List<User>>(){}.getType());
+                                    int i=-1;
+                                    for (int j = 0; j < mem.size(); j++)
+                                        if (mem.get(j).getId().equals(model.getValue().getSelf().getId())){
+                                            i=j;
+                                        }
+
+                                   if (i>=0) {
+                                       mem.get(i).setWorkoutMinutes(model.getValue().getWorkoutMinutes());
+                                       DocumentReference documentReference3 = firestore.collection("groups").document((String) g.getName());
+                                       documentReference3.update("members", mem).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                           @Override
+                                           public void onSuccess(Void aVoid) {
+                                               Log.d("database", "minutes is updated successfully");
+                                           }
+                                       }).addOnFailureListener(new OnFailureListener() {
+                                           @Override
+                                           public void onFailure(@NonNull Exception e) {
+                                               Log.d("database", e.toString());
+                                           }
+                                       });
+                                   }
+
+                                }
+                            }
+                        });
+                    }
+
+
+            }
+        });
     }
 
     private void addWorkoutReps(String workoutType, int reps, int duration) {
@@ -153,6 +226,7 @@ public class dashboardViewModel extends ViewModel implements LifecycleObserver {
     private void addWorkoutMinutes(int minutes) {
         int wm=model.getValue().getWorkoutMinutes()+minutes;
         model.getValue().setWorkoutMinutes(wm);
+
     }
 
     public void loadModel(DocumentSnapshot value, Context context) {

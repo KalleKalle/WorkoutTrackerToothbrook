@@ -92,4 +92,11 @@
     <string name="previousweek">forrigeuge</string>
     <string name="kilometerstraversed">Kilometergået</string>
     <string name="minutesworkedout">minutterTrænet</string>
+    <string name="found">"FANDT: "</string>
+    <string name="entergroupname">Indtast gruppe navn</string>
+    <string name="createGroup">Skab Gruppe</string>
+    <string name="create">Lav</string>
+    <string name="cancel">Annullér</string>
+    <string name="nogroupFound">Ingen gruppe fundet</string>
+    <string name="foundgroup">"FANDT: "</string>
 </resources>

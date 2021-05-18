@@ -46,6 +46,7 @@ public class SettingsViewModel extends ViewModel {
                 Toast.makeText(activity.getApplicationContext(),e.toString(),Toast.LENGTH_LONG).show();
             }
         });
+        network.saveAll();
 
     }
 

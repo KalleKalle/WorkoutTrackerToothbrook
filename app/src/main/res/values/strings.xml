@@ -91,4 +91,11 @@
     <string name="squat">Squat</string>
     <string name="superman">Superman</string>
     <string name="walkRun">Walk/Run</string>
+    <string name="found">"FOUND: "</string>
+    <string name="entergroupname">Enter your group name</string>
+    <string name="createGroup">Create Group</string>
+    <string name="create">Create</string>
+    <string name="cancel">Cancel</string>
+    <string name="nogroupFound">No group found</string>
+    <string name="foundgroup">"FOUND: "</string>
 </resources>

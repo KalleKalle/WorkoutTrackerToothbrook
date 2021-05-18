@@ -1,5 +1,6 @@
 package com.example.workouttrackertoothbrook.ui.personal.setGoal;
 
+import com.example.workouttrackertoothbrook.Data.Network;
 import com.example.workouttrackertoothbrook.Data.workoutModel;
 
 import androidx.lifecycle.ViewModel;
@@ -31,6 +32,8 @@ public class SetGoalViewModel extends ViewModel {
         else {
             model.setTweight(-1);
         }
+        Network network = new Network();
+        network.saveAll();
 
     }
 
