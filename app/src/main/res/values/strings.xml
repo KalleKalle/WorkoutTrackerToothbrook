@@ -100,5 +100,7 @@
     <string name="foundgroup">"FOUND: "</string>
     <string name="start_workout">Start workout</string>
     <string name="stop">Stop</string>
-    <string name="time" translatable="false">0:0:0</string>
+    <string name="time" translatable="false">Time: 0:0:0   Distance:</string>
+    <string name="distance">"   Distance: "</string>
+    <string name="timeTracker">"Time: "</string>
 </resources>

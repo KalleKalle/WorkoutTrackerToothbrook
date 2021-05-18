@@ -13,7 +13,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
@@ -23,11 +22,9 @@ import androidx.fragment.app.Fragment;
 
 import androidx.lifecycle.ViewModelProvider;
 
-import com.example.workouttrackertoothbrook.MainActivity;
 import com.example.workouttrackertoothbrook.R;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationListener;
-import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -35,11 +32,9 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.PolylineOptions;
-import com.google.android.gms.tasks.OnSuccessListener;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
-import java.util.Objects;
-import java.util.Timer;
 
 public class trackerFragment extends Fragment implements LocationListener {
 
@@ -55,6 +50,8 @@ public class trackerFragment extends Fragment implements LocationListener {
     private long timer;
     private Thread timeUpdater;
     private boolean stop;
+    private double kilometers;
+    private DecimalFormat df;
     private OnMapReadyCallback callback = new OnMapReadyCallback() {
 
         /**
@@ -102,25 +99,13 @@ public class trackerFragment extends Fragment implements LocationListener {
                              @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         View root= inflater.inflate(R.layout.fragment_tracker, container, false);
-
+        df = new DecimalFormat("#.##");
         points= new ArrayList<>();
         startStopButton= root.findViewById(R.id.startStopButton);
         time= root.findViewById(R.id.timeView);
         started=false;
         stop=false;
-        timeUpdater= new Thread(()->{
-            while (true) {
-                while (started) {
-                    long timeTakenInMilis = System.currentTimeMillis()-timer;
-                    int seconds = (int) (timeTakenInMilis / 1000) % 60;
-                    int minutes = (int) ((timeTakenInMilis / (1000 * 60)) % 60);
-                    int hours = (int) ((timeTakenInMilis / (1000 * 60 * 60)) % 24);
-                    String timeToShow= hours + ":" + minutes +":" + seconds;
-                    time.setText(timeToShow);
-                }
-            }
-        });
-        timeUpdater.start();
+
         //fusedLocationClient = LocationServices.getFusedLocationProviderClient(getActivity());
         manager = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
         if (ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
@@ -155,6 +140,22 @@ public class trackerFragment extends Fragment implements LocationListener {
             mapFragment.getMapAsync(callback);
         }
         viewModel=  new ViewModelProvider(this).get(com.example.workouttrackertoothbrook.ui.tracker.trackerViewModel.class);
+        timeUpdater= new Thread(()->{
+            while (true) {
+                while (started) {
+                    kilometers= viewModel.CalcDistance(points);
+
+                    String text = getString(R.string.timeTracker) + viewModel.takeTime(timer) + getString(R.string.distance) + df.format(kilometers) + "Km";
+                    settime(text);
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        });
+        timeUpdater.start();
         startStopButton.setOnClickListener(v -> {
             if (ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
                 // TODO: Consider calling
@@ -180,13 +181,26 @@ public class trackerFragment extends Fragment implements LocationListener {
                 stop=true;
                 manager.removeUpdates(this::onLocationChanged);
                 long timeTaken= System.currentTimeMillis()-timer;
-                viewModel.saveWorkout(timeTaken);
+                viewModel.saveWorkout(timeTaken, kilometers);
                 startStopButton.setText(R.string.start_workout);
             }
 
 
         });
         onLocationChanged(manager.getLastKnownLocation(provider));
+    }
+
+    private void settime(String text) {
+        getActivity().runOnUiThread(new Runnable() {
+
+            @Override
+            public void run() {
+
+                time.setText(text);
+
+            }
+        });
+
     }
 
     @Override
