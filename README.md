@@ -20,10 +20,8 @@ So i thought instead of manually giving points and keeping track, i would develo
 </ul>
 <li><i>SHOULD HAVES</i>
 <ul>
-<li> A user SHOULD be able to compare workout with previous workouts
 <li> A user SHOULD be able to create groups
 <li> A user SHOULD be able to Join groups
-<li> A user SHOULD be able to see friends workouts
 <li> A user SHOULD be able to set workout goals
 <li> A user SHOULD be able to create competitions in their groups
 </ul>
@@ -31,8 +29,6 @@ So i thought instead of manually giving points and keeping track, i would develo
 <ul>
 <li>A user COULD be able to set the rules for the group competitions themselves
 <li>The app COUlD be able to automatically keep score in group competitions
-<li>The app COULD be able to show proper technique when doing certain workouts
-<li>The app COULD be able to give suggestions for workouts
 </ul>
 <li><i>WON'T HAVES</i>
 <ul>
