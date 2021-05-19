@@ -6,10 +6,16 @@ import com.example.workouttrackertoothbrook.R;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModel;
 
 public class GroupViewModel extends ViewModel {
+
+
+    public GroupViewModel() {
+
+    }
 
     public void changeFragment(Fragment fragment, FragmentActivity activity, Bundle values) {
         FragmentTransaction trans = activity.getSupportFragmentManager().beginTransaction();
@@ -20,5 +26,12 @@ public class GroupViewModel extends ViewModel {
 
     public void back(FragmentActivity activity) {
 
+    }
+
+    public void removebackfragments(FragmentManager supportFragmentManager) {
+        int count = supportFragmentManager.getBackStackEntryCount();
+        for (int i = 0; i <count; i++) {
+            supportFragmentManager.popBackStack();
+        }
     }
 }

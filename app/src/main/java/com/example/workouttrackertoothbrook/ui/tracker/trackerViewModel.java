@@ -1,10 +1,15 @@
 package com.example.workouttrackertoothbrook.ui.tracker;
 
+import android.content.Context;
+
 import com.example.workouttrackertoothbrook.Data.Network;
+import com.example.workouttrackertoothbrook.Data.Workout;
 import com.example.workouttrackertoothbrook.Data.workoutModel;
+import com.example.workouttrackertoothbrook.R;
 import com.google.android.gms.maps.model.LatLng;
 
 import java.text.DecimalFormat;
+import java.util.Date;
 import java.util.List;
 
 import androidx.lifecycle.LiveData;
@@ -28,12 +33,17 @@ public class trackerViewModel extends ViewModel {
         return mText;
     }
 
-    public void saveWorkout(long timeTaken,double kilometers) {
+    public void saveWorkout(long timeTaken, double kilometers, Context context) {
         int minutes = (int) (timeTaken/60000);
         model.getSelf().setWorkoutMinutes(model.getWorkoutMinutes()+minutes);
         model.setWorkoutMinutes(model.getWorkoutMinutes()+minutes);
         model.getSelf().setKilometers(model.getKilometers()+kilometers);
         model.setKilometers(model.getKilometers() + kilometers);
+        //.75 x your weight (in lbs.)
+        double weightInLbs = model.getSelf().getWeight()*2.205;
+        double TCB = 0.75*weightInLbs;
+        Workout workout = new Workout(context.getString(R.string.walkRun),minutes, new Date(),kilometers,(int)TCB);
+        model.getWorkouts().add(workout);
         network.saveAll();
     }
 

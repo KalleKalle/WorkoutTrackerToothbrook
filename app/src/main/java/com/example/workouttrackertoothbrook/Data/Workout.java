@@ -6,10 +6,10 @@ public class Workout {
     String type;
     int duration;
     String time;
-    int reps;
+    double reps;
     int calories;
 
-    public Workout(String type, int duration, Date time, int reps, int calories) {
+    public Workout(String type, int duration, Date time, double reps, int calories) {
         this.type = type;
         this.calories=calories;
         this.duration = duration;
@@ -50,7 +50,7 @@ public class Workout {
     }
 
     public String getReps() {
-        return Integer.toString(reps);
+        return Double.toString(reps);
     }
 
     public void setReps(int reps) {

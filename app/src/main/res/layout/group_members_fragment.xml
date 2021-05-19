@@ -12,6 +12,7 @@
         android:layout_height="wrap_content"
         android:background="@color/design_default_color_primary"
         android:gravity="center"
+        android:clickable="true"
         android:text="@string/groupmembers"
         android:textColor="@color/white"
         android:textSize="35sp"

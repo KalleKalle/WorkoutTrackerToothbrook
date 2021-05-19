@@ -53,11 +53,12 @@
         android:id="@+id/groupNameTitle"
         android:layout_width="match_parent"
         android:textColor="@color/black"
+        android:clickable="true"
         android:layout_height="wrap_content"
         android:text="GroupName"
         android:textSize="35sp"
         android:gravity="center"
-        />
+        android:focusable="true" />
 
     <FrameLayout
         android:id="@+id/groupSubFragment"

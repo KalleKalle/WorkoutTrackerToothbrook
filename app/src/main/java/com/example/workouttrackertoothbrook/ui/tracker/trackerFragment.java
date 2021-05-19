@@ -181,7 +181,7 @@ public class trackerFragment extends Fragment implements LocationListener {
                 stop=true;
                 manager.removeUpdates(this::onLocationChanged);
                 long timeTaken= System.currentTimeMillis()-timer;
-                viewModel.saveWorkout(timeTaken, kilometers);
+                viewModel.saveWorkout(timeTaken, kilometers, getActivity());
                 startStopButton.setText(R.string.start_workout);
             }
 

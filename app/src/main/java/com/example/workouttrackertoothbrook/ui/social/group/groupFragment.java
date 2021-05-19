@@ -1,5 +1,6 @@
 package com.example.workouttrackertoothbrook.ui.social.group;
 
+import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.graphics.Color;
@@ -53,6 +54,7 @@ public class groupFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         mViewModel = new ViewModelProvider(this).get(GroupViewModel.class);
+        mViewModel.removebackfragments(getActivity().getSupportFragmentManager());
 
         back.setOnClickListener(v -> {
             mViewModel.back(getActivity());
