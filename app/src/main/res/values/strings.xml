@@ -103,4 +103,5 @@
     <string name="time" translatable="false">Time: 0:0:0   Distance:</string>
     <string name="distance">"   Distance: "</string>
     <string name="timeTracker">"Time: "</string>
+    <string name="workoutAdded">Workout added</string>
 </resources>

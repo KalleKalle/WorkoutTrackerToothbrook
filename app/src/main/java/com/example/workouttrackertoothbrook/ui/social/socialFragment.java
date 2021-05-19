@@ -68,7 +68,7 @@ public class socialFragment extends Fragment {
 
         });
 
-        addGroup.setOnClickListener(v -> viewModel.addGroup(group, true));
+        addGroup.setOnClickListener(v -> viewModel.addGroup(group, false));
 
         createGroupButton.setOnClickListener(v -> {
             AlertDialog.Builder createGroupDialog = new AlertDialog.Builder(getActivity());

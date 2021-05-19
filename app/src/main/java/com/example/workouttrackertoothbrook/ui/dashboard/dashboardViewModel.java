@@ -108,16 +108,20 @@ public class dashboardViewModel extends ViewModel implements LifecycleObserver {
 
 
     public String getLastWeekTimeString(Context context) {
-        int time= model.getValue().getPreviousWeekMinutes();
-        int hour=0;
-        while(time>=60){
-            hour++;
-            time=time-60;
+        try {
+            int time = model.getValue().getPreviousWeekMinutes();
+            int hour = 0;
+            while (time >= 60) {
+                hour++;
+                time = time - 60;
+            }
+            if (hour == 0) {
+                return context.getString(R.string.Last_week) + time + " Min";
+            }
+            return context.getString(R.string.Last_week) + hour + context.getString(R.string.hour) + time + " Min";
+        }catch (NullPointerException e){
+            return null;
         }
-        if(hour==0){
-            return context.getString(R.string.Last_week) +  time+" Min";
-        }
-        return context.getString(R.string.Last_week) +  hour+context.getString(R.string.hour) +time+" Min";
     }
 
     public String getTimeString(Context context) {

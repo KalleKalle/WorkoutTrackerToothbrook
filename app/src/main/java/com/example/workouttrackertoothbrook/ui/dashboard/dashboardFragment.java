@@ -113,16 +113,19 @@ public class dashboardFragment extends Fragment {
             @Override
             public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
                 if (value!=null) {
-                    dashboardViewModel.loadModel(value,getContext());
-                    prevMinutes.setText(dashboardViewModel.getLastWeekTimeString(getContext()));
-                    minutes.setText(dashboardViewModel.getTimeString(getContext()));
-                    kilometers.setText(dashboardViewModel.getKilometers(getContext()).getValue());
-                    prevKilometers.setText(dashboardViewModel.getPreviousKilometers(getContext()).getValue());
-                    averageKilometers.setText(dashboardViewModel.getAverageKilometers(getContext()).getValue());
-                    averageMinutes.setText(dashboardViewModel.getAvgTimeString(getContext()));
-                    ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(getActivity().getBaseContext(), android.R.layout.simple_spinner_item,dashboardViewModel.getWorkoutTypes());
-                    arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                    spinner.setAdapter(arrayAdapter);
+                    try {
+                        dashboardViewModel.loadModel(value, getContext());
+                        prevMinutes.setText(dashboardViewModel.getLastWeekTimeString(getContext()));
+                        minutes.setText(dashboardViewModel.getTimeString(getContext()));
+                        kilometers.setText(dashboardViewModel.getKilometers(getActivity()).getValue());
+                        prevKilometers.setText(dashboardViewModel.getPreviousKilometers(getActivity()).getValue());
+                        averageKilometers.setText(dashboardViewModel.getAverageKilometers(getActivity()).getValue());
+                        averageMinutes.setText(dashboardViewModel.getAvgTimeString(getActivity()));
+                        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(getActivity().getBaseContext(), android.R.layout.simple_spinner_item, dashboardViewModel.getWorkoutTypes());
+                        arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                        spinner.setAdapter(arrayAdapter);
+                    }catch (NullPointerException ignored){
+                    }
                 }
             }
         });
@@ -140,7 +143,7 @@ public class dashboardFragment extends Fragment {
             editReps.setText("");
             editMinutes.setText("");
             minutes.setText(dashboardViewModel.getTimeString(getContext()));
-            Toast.makeText(getActivity(),"Workout added", Toast.LENGTH_LONG).show();
+            Toast.makeText(getActivity(), getActivity().getString(R.string.workoutAdded), Toast.LENGTH_LONG).show();
         });
     }
 

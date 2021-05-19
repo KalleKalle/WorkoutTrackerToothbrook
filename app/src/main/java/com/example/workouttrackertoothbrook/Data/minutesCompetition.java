@@ -25,7 +25,8 @@ public class minutesCompetition extends Competition {
 
         @Override
         public int compare(HashMap o1, HashMap o2) {
-            return (int) o1.get("workoutMinutes") - (int) o2.get("workoutMinutes");
+
+            return Integer.parseInt(o1.get("workoutMinutes").toString()) - Integer.parseInt(o2.get("workoutMinutes").toString());
         }
     }
 
