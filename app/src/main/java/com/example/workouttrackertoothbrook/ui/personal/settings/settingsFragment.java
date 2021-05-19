@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.workouttrackertoothbrook.MainActivity;
 import com.example.workouttrackertoothbrook.R;
@@ -49,7 +50,10 @@ public class settingsFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
         mViewModel = new ViewModelProvider(this).get(SettingsViewModel.class);
         email.setText(mViewModel.getEmail());
-        addWorkouttype.setOnClickListener(v -> mViewModel.addWorkoutType(workoutType.getText().toString()));
+        addWorkouttype.setOnClickListener(v -> {
+            mViewModel.addWorkoutType(workoutType.getText().toString());
+            Toast.makeText(getActivity(), getActivity().getString(R.string.workouttypeadded),Toast.LENGTH_LONG).show();
+        });
         logout.setOnClickListener(v -> {
             mViewModel.logoutUser();
             startActivity(new Intent(getActivity().getApplicationContext(), Login.class));

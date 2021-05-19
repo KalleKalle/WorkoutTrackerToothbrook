@@ -13,6 +13,7 @@ import com.example.workouttrackertoothbrook.Data.minutesCompetition;
 import com.example.workouttrackertoothbrook.R;
 import com.example.workouttrackertoothbrook.ui.social.group.groupAdapter;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -56,7 +57,8 @@ public class competitionAdapter extends RecyclerView.Adapter<competitionAdapter.
                 holder.score.setText(contestants.get(position).get("workoutMinutes")+" Min");
                 break;
             default:
-                holder.score.setText(String.valueOf(contestants.get(position).get("kilometeres"))+" Km");
+                DecimalFormat df = new DecimalFormat("#.##");
+                holder.score.setText(df.format(contestants.get(position).get("kilometers"))+" Km");
                 break;
         }
     }

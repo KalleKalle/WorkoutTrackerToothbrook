@@ -103,6 +103,8 @@
     <string name="start_workout">Start træning</string>
     <string name="distance">"   Distance: "</string>
     <string name="timeTracker">"Tid: "</string>
-    <string name="time" translatable="false">Ti: 0:0:0   Distance:</string>
+    <string name="time" translatable="false">Tid: 0:0:0   Distance:</string>
     <string name="workoutAdded">Træning tilføjet</string>
+    <string name="workouttypeadded">Trænings type tilføjet</string>
+    <string name="reps">" Gentagelse(r)"</string>
 </resources>

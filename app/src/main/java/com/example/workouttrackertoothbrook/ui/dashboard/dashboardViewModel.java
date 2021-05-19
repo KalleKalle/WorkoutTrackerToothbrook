@@ -20,6 +20,7 @@ import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
+import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -71,14 +72,16 @@ public class dashboardViewModel extends ViewModel implements LifecycleObserver {
             d.setValue(R.string.Last_week + "0 Km");
             return d;
         }
-        d.setValue(context.getString(R.string.Last_week) + km+" Km");
+        DecimalFormat df = new DecimalFormat("#.##");
+        d.setValue(context.getString(R.string.Last_week) + df.format(km)+" Km");
         return d;
 
     }
 
     public LiveData<String> getKilometers(Context context) {
         MutableLiveData<String> d = new MutableLiveData<>();
-        d.setValue(context.getString(R.string.This_week) +model.getValue().getKilometers()+" Km");
+        DecimalFormat df = new DecimalFormat("#.##");
+        d.setValue(context.getString(R.string.This_week) +df.format(model.getValue().getKilometers())+" Km");
         return d;
     }
 
@@ -102,7 +105,8 @@ public class dashboardViewModel extends ViewModel implements LifecycleObserver {
 
     public LiveData<String> getAverageKilometers(Context context){
         MutableLiveData<String> d = new MutableLiveData<>();
-        d.setValue(context.getString(R.string.avg_distance) + model.getValue().getAverageKilometers()+" Km");
+        DecimalFormat df = new DecimalFormat("#.##");
+        d.setValue(context.getString(R.string.avg_distance) + df.format(model.getValue().getAverageKilometers())+" Km");
         return d;
     }
 

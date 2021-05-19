@@ -25,6 +25,7 @@ public class SettingsViewModel extends ViewModel {
     }
     public void addWorkoutType(String workoutType) {
         model.addWorkoutType(workoutType);
+        network.saveAll();
     }
 
     public void logoutUser() {

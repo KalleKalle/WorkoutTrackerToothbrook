@@ -41,7 +41,7 @@ public class trackerViewModel extends ViewModel {
         model.setKilometers(model.getKilometers() + kilometers);
         //.75 x your weight (in lbs.)
         double weightInLbs = model.getSelf().getWeight()*2.205;
-        double TCB = 0.75*weightInLbs;
+        double TCB = 0.75*weightInLbs*kilometers;
         Workout workout = new Workout(context.getString(R.string.walkRun),minutes, new Date(),kilometers,(int)TCB);
         model.getWorkouts().add(workout);
         network.saveAll();

@@ -1,5 +1,6 @@
 package com.example.workouttrackertoothbrook.ui.personal.seeworkouts;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,6 +9,7 @@ import android.widget.TextView;
 import com.example.workouttrackertoothbrook.Data.Workout;
 import com.example.workouttrackertoothbrook.R;
 
+import java.text.DecimalFormat;
 import java.util.List;
 
 import androidx.annotation.NonNull;
@@ -16,9 +18,11 @@ import androidx.recyclerview.widget.RecyclerView;
 public class workoutAdapter extends RecyclerView.Adapter<workoutAdapter.ViewHolder> {
 
     List<Workout> workouts;
+    Context context;
 
-    public workoutAdapter(List<Workout> w) {
+    public workoutAdapter(List<Workout> w, Context cText) {
         workouts=w;
+        context=cText;
     }
     @NonNull
     @Override
@@ -36,7 +40,15 @@ public class workoutAdapter extends RecyclerView.Adapter<workoutAdapter.ViewHold
         holder.duration.setText(workouts.get(position).getDuration()+"Min");
         holder.calories.setText(workouts.get(position).getCalories()+"kcal");
         holder.date.setText(workouts.get(position).getTime());
-        holder.reps.setText(workouts.get(position).getReps()+" Reps");
+        if (workouts.get(position).getType().equals(context.getString(R.string.walkRun))) {
+            DecimalFormat df = new DecimalFormat("#.##");
+            String formated= df.format(Double.parseDouble(workouts.get(position).getReps()))+context.getString(R.string.kmWorkout);
+            holder.reps.setText(formated);
+        }
+        else {
+           int reps = (int) Double.parseDouble(workouts.get(position).getReps());
+            holder.reps.setText(reps + context.getString(R.string.reps));
+        }
     }
 
     @Override

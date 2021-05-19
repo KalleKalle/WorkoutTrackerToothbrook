@@ -23,7 +23,7 @@ public class kilometersCompetition extends Competition {
 
         @Override
         public int compare(HashMap o1, HashMap o2) {
-            return (int) ((int)o1.get("kilometeres") - (int) o2.get("kilometeres"));
+            return (int) Double.parseDouble(o1.get("kilometers").toString()) - (int)Double.parseDouble(o2.get("kilometers").toString());
         }
     }
 }

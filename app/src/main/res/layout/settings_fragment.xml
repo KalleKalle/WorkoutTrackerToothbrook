@@ -37,6 +37,7 @@
             <EditText
                 android:id="@+id/workoutType"
                 android:layout_width="match_parent"
+                android:textColor="@color/black"
                 android:backgroundTint="@color/cardview_dark_background"
                 android:layout_height="wrap_content"
                 />

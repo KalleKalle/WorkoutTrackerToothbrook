@@ -125,6 +125,7 @@ public class socialViewModel extends ViewModel {
 
 
     public void getGroups(socialFragment socialFragment) {
+        model.getSelf().getId();
         DocumentReference documentReference= firestore.collection("users").document(model.getSelf().getId());
         documentReference.addSnapshotListener(new EventListener<DocumentSnapshot>() {
             @Override

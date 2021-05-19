@@ -31,6 +31,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.gson.Gson;
 
+import java.text.DecimalFormat;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -117,6 +118,7 @@ public class dashboardFragment extends Fragment {
                         dashboardViewModel.loadModel(value, getContext());
                         prevMinutes.setText(dashboardViewModel.getLastWeekTimeString(getContext()));
                         minutes.setText(dashboardViewModel.getTimeString(getContext()));
+
                         kilometers.setText(dashboardViewModel.getKilometers(getActivity()).getValue());
                         prevKilometers.setText(dashboardViewModel.getPreviousKilometers(getActivity()).getValue());
                         averageKilometers.setText(dashboardViewModel.getAverageKilometers(getActivity()).getValue());
