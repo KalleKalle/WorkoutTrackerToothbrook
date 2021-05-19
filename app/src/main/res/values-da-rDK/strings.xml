@@ -67,7 +67,7 @@
     <string name="weight_register">Vægt</string>
     <string name="Last_week">"Sidste uge: "</string>
     <string name="This_week">"Denne uge: "</string>
-    <string name="avg_distance">"gns. Distance: "</string>
+    <string name="avg_distance">"gns. Dist. : "</string>
     <string name="avg_minutes">"gns. Tid: "</string>
     <string name="hour">"T "</string>
     <string name="add_workout_type">Tilføj øvelses type</string>
@@ -103,8 +103,13 @@
     <string name="start_workout">Start træning</string>
     <string name="distance">"   Distance: "</string>
     <string name="timeTracker">"Tid: "</string>
-    <string name="time" translatable="false">Tid: 0:0:0   Distance:</string>
+    <string name="time">Tid: 0:0:0   Distance:</string>
     <string name="workoutAdded">Træning tilføjet</string>
     <string name="workouttypeadded">Trænings type tilføjet</string>
     <string name="reps">" Gentagelse(r)"</string>
+    <string name="end_competition">Slut konkurrence</string>
+    <string name="chooseCom">Vælg konkurrence type</string>
+    <string name="createComp">Lav Konkurrence</string>
+    <string name="mostminutes">Flest Minutter</string>
+    <string name="mostkilometers">Flest Kilometer</string>
 </resources>

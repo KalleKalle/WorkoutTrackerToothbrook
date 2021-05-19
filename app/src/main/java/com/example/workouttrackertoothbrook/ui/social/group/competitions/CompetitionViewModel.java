@@ -1,15 +1,16 @@
 package com.example.workouttrackertoothbrook.ui.social.group.competitions;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.util.Log;
 
 import com.example.workouttrackertoothbrook.Data.Competition;
-import com.example.workouttrackertoothbrook.Data.CompetitionCategories;
 import com.example.workouttrackertoothbrook.Data.Group;
 import com.example.workouttrackertoothbrook.Data.Network;
 import com.example.workouttrackertoothbrook.Data.User;
 import com.example.workouttrackertoothbrook.Data.kilometersCompetition;
 import com.example.workouttrackertoothbrook.Data.minutesCompetition;
+import com.example.workouttrackertoothbrook.R;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -62,14 +63,20 @@ public class CompetitionViewModel extends ViewModel {
         });
     }
 
-    public void createCompetition(String type, String groupName, DialogInterface.OnClickListener onClickListener) {
+    public void createCompetition(String type, String groupName, Context context) {
         Competition competition;
+        if (type.equals(context.getString(R.string.mostminutes))){
+            type="Most Minutes";
+        }
+        else {
+            type="Most Kilometers";
+        }
         switch (type){
             case "Most Minutes":
-                competition= new minutesCompetition(CompetitionCategories.mostMinutes);
+                competition= new minutesCompetition(context.getString(R.string.mostminutes));
                 break;
             default:
-                competition= new kilometersCompetition(CompetitionCategories.mostKilometers);
+                competition= new kilometersCompetition(context.getString(R.string.mostkilometers));
                 break;
         }
         DocumentReference documentReference= firestore.collection("groups").document(groupName);
@@ -100,5 +107,24 @@ public class CompetitionViewModel extends ViewModel {
                 competitionFragment.categoryAndMembersReady(members);
             }
         });
+    }
+
+    public void EndCompetition(String groupName, competitionFragment competitionFragment) {
+        DocumentReference documentReference = firestore.collection("groups").document(groupName);
+        Map<String,Object> map= new HashMap<>();
+        map.put("Competition",null);
+        documentReference.update(map).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void aVoid) {
+                Log.d("database","competition is ended successfully");
+                competitionFragment.CompReady(null,groupName);
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Log.d("database",e.toString());
+            }
+        });
+
     }
 }

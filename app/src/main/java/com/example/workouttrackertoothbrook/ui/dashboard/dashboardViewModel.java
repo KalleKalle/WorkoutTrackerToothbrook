@@ -191,32 +191,35 @@ public class dashboardViewModel extends ViewModel implements LifecycleObserver {
                         documentReference2.addSnapshotListener(new EventListener<DocumentSnapshot>() {
                             @Override
                             public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
-                                if (!alreadyUpdatedGroups.contains(value.getString("name"))) {
-                                    alreadyUpdatedGroups.add(value.getString("name"));
-                                    ArrayList<User> mem= new Gson().fromJson(new Gson().toJson(value.get("members")),new TypeToken<List<User>>(){}.getType());
-                                    int i=-1;
-                                    for (int j = 0; j < mem.size(); j++)
-                                        if (mem.get(j).getId().equals(model.getValue().getSelf().getId())){
-                                            i=j;
+                                try {
+                                    if (!alreadyUpdatedGroups.contains(value.getString("name"))) {
+                                        alreadyUpdatedGroups.add(value.getString("name"));
+                                        ArrayList<User> mem = new Gson().fromJson(new Gson().toJson(value.get("members")), new TypeToken<List<User>>() {
+                                        }.getType());
+                                        int i = -1;
+                                        for (int j = 0; j < mem.size(); j++)
+                                            if (mem.get(j).getId().equals(model.getValue().getSelf().getId())) {
+                                                i = j;
+                                            }
+
+                                        if (i >= 0) {
+                                            mem.get(i).setWorkoutMinutes(model.getValue().getWorkoutMinutes());
+                                            DocumentReference documentReference3 = firestore.collection("groups").document((String) g.getName());
+                                            documentReference3.update("members", mem).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                @Override
+                                                public void onSuccess(Void aVoid) {
+                                                    Log.d("database", "minutes is updated successfully");
+                                                }
+                                            }).addOnFailureListener(new OnFailureListener() {
+                                                @Override
+                                                public void onFailure(@NonNull Exception e) {
+                                                    Log.d("database", e.toString());
+                                                }
+                                            });
                                         }
 
-                                   if (i>=0) {
-                                       mem.get(i).setWorkoutMinutes(model.getValue().getWorkoutMinutes());
-                                       DocumentReference documentReference3 = firestore.collection("groups").document((String) g.getName());
-                                       documentReference3.update("members", mem).addOnSuccessListener(new OnSuccessListener<Void>() {
-                                           @Override
-                                           public void onSuccess(Void aVoid) {
-                                               Log.d("database", "minutes is updated successfully");
-                                           }
-                                       }).addOnFailureListener(new OnFailureListener() {
-                                           @Override
-                                           public void onFailure(@NonNull Exception e) {
-                                               Log.d("database", e.toString());
-                                           }
-                                       });
-                                   }
-
-                                }
+                                    }
+                                }catch (NullPointerException ignore){}
                             }
                         });
                     }

@@ -1,12 +1,12 @@
 package com.example.workouttrackertoothbrook.ui.social.group.competitions;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.workouttrackertoothbrook.Data.Competition;
-import com.example.workouttrackertoothbrook.Data.CompetitionCategories;
 import com.example.workouttrackertoothbrook.Data.User;
 import com.example.workouttrackertoothbrook.Data.kilometersCompetition;
 import com.example.workouttrackertoothbrook.Data.minutesCompetition;
@@ -26,8 +26,14 @@ public class competitionAdapter extends RecyclerView.Adapter<competitionAdapter.
     String type;
     Competition competition;
 
-    public competitionAdapter(List<HashMap> members, String typeOfCompetition) {
-        type=typeOfCompetition;
+    public competitionAdapter(List<HashMap> members, String typeOfCompetition, Context context) {
+
+        if (typeOfCompetition.equals(context.getString(R.string.mostminutes))){
+            type="Most Minutes";
+        }
+        else {
+            type="Most Kilometers";
+        }
         switch (type){
             case "Most Minutes":
                 competition= new minutesCompetition(type);
