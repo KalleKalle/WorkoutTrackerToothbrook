@@ -28,7 +28,7 @@ So i thought instead of manually giving points and keeping track, i would develo
 <li><i>COULD HAVES</i>
 <ul>
 <li>A user COULD be able to set the rules for the group competitions themselves
-<li>The app COUlD be able to automatically keep score in group competitions
+<li>The app COULD be able to automatically keep score in group competitions
 </ul>
 <li><i>WON'T HAVES</i>
 <ul>
