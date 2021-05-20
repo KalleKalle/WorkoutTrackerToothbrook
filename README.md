@@ -8,6 +8,7 @@ Within the app it should be possible to create groups and compete within the gro
 The reason for this idea is that my family has begun competing in who could work the most out in a month, and given points for each km run or walked and so on. 
 So i thought instead of manually giving points and keeping track, i would develop an app that could do it for them.
 
+Video presentation link: https://www.youtube.com/watch?v=q7H49DUCFIY
 
 <b><i>Requirements</i><b>
 <ul>
