@@ -28,10 +28,4 @@ public class GroupViewModel extends ViewModel {
 
     }
 
-    public void removebackfragments(FragmentManager supportFragmentManager) {
-        int count = supportFragmentManager.getBackStackEntryCount();
-        for (int i = 0; i <count; i++) {
-            supportFragmentManager.popBackStack();
-        }
-    }
 }

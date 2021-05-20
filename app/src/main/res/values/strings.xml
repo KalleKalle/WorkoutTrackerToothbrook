@@ -112,4 +112,5 @@
     <string name="cancel">Cancel</string>
     <string name="mostminutes">Most Minutes</string>
     <string name="mostkilometers">Most Kilometers</string>
+    <string name="welcome_to">"Welcome to "</string>
 </resources>

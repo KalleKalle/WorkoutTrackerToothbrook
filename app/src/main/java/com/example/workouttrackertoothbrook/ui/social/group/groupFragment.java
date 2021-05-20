@@ -41,7 +41,7 @@ public class groupFragment extends Fragment {
         View root= inflater.inflate(R.layout.group_fragment, container, false);
         groupName = getArguments().getString("groupName");
         title = root.findViewById(R.id.groupNameTitle);
-        title.setText("Welcome to "+ groupName);
+        title.setText(getString(R.string.welcome_to)+ groupName);
 
         competitions = root.findViewById(R.id.competition);
         members = root.findViewById(R.id.members);
@@ -54,7 +54,6 @@ public class groupFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         mViewModel = new ViewModelProvider(this).get(GroupViewModel.class);
-        mViewModel.removebackfragments(getActivity().getSupportFragmentManager());
 
         back.setOnClickListener(v -> {
             mViewModel.back(getActivity());

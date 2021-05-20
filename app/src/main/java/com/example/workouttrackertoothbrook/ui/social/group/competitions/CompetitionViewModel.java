@@ -49,16 +49,18 @@ public class CompetitionViewModel extends ViewModel {
         documentReference.addSnapshotListener(new EventListener<DocumentSnapshot>() {
             @Override
             public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
-                HashMap<String,String> map= (HashMap) value.get("Competition");
-                if (map!=null) {
-                    competition = new Competition(map.get("category")) {
-                        @Override
-                        public List<HashMap> getRanking(List<HashMap> contestants) {
-                            return null;
-                        }
-                    };
-                }
-                competitionFragment.CompReady(competition,groupName);
+                try {
+                    HashMap<String, String> map = (HashMap) value.get("Competition");
+                    if (map != null) {
+                        competition = new Competition(map.get("category")) {
+                            @Override
+                            public List<HashMap> getRanking(List<HashMap> contestants) {
+                                return null;
+                            }
+                        };
+                    }
+                    competitionFragment.CompReady(competition, groupName);
+                }catch (NullPointerException ignore){}
             }
         });
     }

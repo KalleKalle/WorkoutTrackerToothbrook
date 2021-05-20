@@ -112,4 +112,5 @@
     <string name="createComp">Lav Konkurrence</string>
     <string name="mostminutes">Flest Minutter</string>
     <string name="mostkilometers">Flest Kilometer</string>
+    <string name="welcome_to">"Velkommen til "</string>
 </resources>
