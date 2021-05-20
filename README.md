@@ -36,3 +36,8 @@ Video presentation link: https://www.youtube.com/watch?v=q7H49DUCFIY
 <li>The app WON'T be able to give recipies for nutritional and healthy food
 </ul>
 </ul
+  
+  <b><i>References</i></b>
+  https://youtu.be/tbh9YaWPKKs
+  https://youtu.be/TwHmrZxiPA8
+  
