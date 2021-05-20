@@ -14,22 +14,22 @@ Video presentation link: https://www.youtube.com/watch?v=q7H49DUCFIY
 <ul>
 <li><i>MUST HAVES</i>
 <ul>
-<li>A user MUST be able to track their Workout
-<li>A user MUST be able to see previous Workouts
-<li>The app MUST be able to calculate BMI
-<li>The app MUST be able to show calories burned after workout
+  <li>A user MUST be able to track their Workout <i>(Done)</i>
+<li>A user MUST be able to see previous Workouts <i>(Done)</i>
+<li>The app MUST be able to calculate BMI <i>(Done)</i>
+<li>The app MUST be able to show calories burned after workout <i>(Done)</i>
 </ul>
 <li><i>SHOULD HAVES</i>
 <ul>
-<li> A user SHOULD be able to create groups
-<li> A user SHOULD be able to Join groups
-<li> A user SHOULD be able to set workout goals
-<li> A user SHOULD be able to create competitions in their groups
+<li> A user SHOULD be able to create groups <i>(Done)</i>
+<li> A user SHOULD be able to Join groups <i>(Done)</i>
+<li> A user SHOULD be able to set workout goals <i>(Done)</i>
+<li> A user SHOULD be able to create competitions in their groups <i>(Done)</i>
 </ul>
 <li><i>COULD HAVES</i>
 <ul>
-<li>A user COULD be able to set the rules for the group competitions themselves
-<li>The app COULD be able to automatically keep score in group competitions
+<li>A user COULD be able to set the rules for the group competitions themselves <i>(Can set if points is kilometers or minutes)</i>
+<li>The app COULD be able to automatically keep score in group competitions <i>(Done)</i>
 </ul>
 <li><i>WON'T HAVES</i>
 <ul>
